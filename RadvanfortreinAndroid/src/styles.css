@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 .animate-all {
   transition: all 1s ease;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
