@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
+import { TabelComponent } from './tabel/tabel.component';
 
 export interface Trein {
   naam: string;

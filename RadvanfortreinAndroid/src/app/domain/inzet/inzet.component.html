@@ -3,15 +3,7 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Kies een trein</ng-template>
-      <mat-form-field>
-        <mat-label>Treinen</mat-label>
-        <mat-select [(value)]="selectedTrein" size="4">
-          <mat-option *ngFor="let trein of treinen" [value]="trein.beginStation">
-            De trein uit {{trein.beginStation}} van {{trein.tijd}}
-            <!-- Deze field moet aangepast worden op de info die we willen tonen -->
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <app-tabel></app-tabel>
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
