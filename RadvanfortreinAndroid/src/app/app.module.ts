@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatInputModule, MatButtonModule, 
   MatSelectModule, MatIconModule,MatSidenavModule, MatListModule,
-  MatTabsModule, MatStepperModule, MatFormFieldModule, MatSliderModule
+  MatTabsModule, MatStepperModule, MatFormFieldModule, MatSliderModule, MatRadioModule
  } from '@angular/material';
 import { TabsComponent } from './material/tabs/tabs.component';
 
@@ -41,7 +41,8 @@ import { TabsComponent } from './material/tabs/tabs.component';
     MatStepperModule, 
     MatFormFieldModule,
     MatSliderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

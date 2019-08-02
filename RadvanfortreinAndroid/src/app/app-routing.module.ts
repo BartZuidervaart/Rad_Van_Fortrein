@@ -6,6 +6,7 @@ import { ResultaatComponent } from './domain/resultaat/resultaat.component';
 
 
 const routes: Routes = [
+  { path: "", redirectTo: "home", pathMatch: "full"},
   { path: "home", component: StartComponent },
   { path: "inzet", component: InzetComponent },
   { path: "resultaat", component: ResultaatComponent }
