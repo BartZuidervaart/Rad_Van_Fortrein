@@ -1,0 +1,15 @@
+
+<!-- <mat-tab-group headerPosition="below" mat-align-tabs="center">
+    <mat-tab label="Start"><app-start></app-start></mat-tab>
+    <mat-tab label="Inzetten"><app-inzet></app-inzet> </mat-tab>
+    <mat-tab label="Resultaat"> <app-resultaat></app-resultaat> </mat-tab>
+</mat-tab-group> -->
+<nav mat-tab-nav-bar mat-align-tabs="center">
+    <a class="tab" mat-tab-link *ngFor="let link of navLinks" 
+    [routerLink]="link.link" 
+    routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive">
+    {{link.label}}
+    </a>
+</nav>
+<router-outlet></router-outlet>
