@@ -1,9 +1,11 @@
-<p>Hier kun je inzetten op een trein</p>
+<!-- <p>Hier kun je inzetten op een trein</p> -->
 <mat-vertical-stepper [linear]="!isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Kies een trein</ng-template>
       <app-tabel></app-tabel>
+      <!-- De link tussen dit inzet component en de trein tabel component 
+        moet nog gemaakt worden dmv van een service bestand. Evt icm het ophalen uit de database-->
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>

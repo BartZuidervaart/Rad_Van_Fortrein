@@ -12,10 +12,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatInputModule, MatButtonModule, 
   MatSelectModule, MatIconModule,MatSidenavModule, MatListModule,
-  MatTabsModule, MatStepperModule, MatFormFieldModule, MatSliderModule, MatRadioModule, MatTableModule
+  MatTabsModule, MatStepperModule, MatFormFieldModule, MatSliderModule, MatRadioModule, MatTableModule, MatExpansionModule
  } from '@angular/material';
 import { TabsComponent } from './material/tabs/tabs.component';
 import { TabelComponent } from './domain/inzet/tabel/tabel.component';
+import { ResultaatElementComponent } from './domain/resultaat/resultaat-element/resultaat-element.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TabelComponent } from './domain/inzet/tabel/tabel.component';
     InzetComponent,
     ResultaatComponent,
     TabsComponent,
-    TabelComponent
+    TabelComponent,
+    ResultaatElementComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +48,7 @@ import { TabelComponent } from './domain/inzet/tabel/tabel.component';
     ReactiveFormsModule,
     MatRadioModule,
     MatTableModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
