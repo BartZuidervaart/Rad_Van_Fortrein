@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent
 {
+  links = ['First', 'Second', 'Third'];
+  activeLink = this.links[0];
+  
   constructor()
   {
   }
