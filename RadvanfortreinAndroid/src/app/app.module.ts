@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 
 
 import { AppComponent } from './app.component';
@@ -16,6 +17,9 @@ import { MatToolbarModule, MatInputModule, MatButtonModule,
  } from '@angular/material';
 import { TabsComponent } from './material/tabs/tabs.component';
 import { TabelComponent } from './inzet/tabel/tabel.component';
+import { TreinComponent } from './trein/trein.component';
+import { TreinenComponent } from './treinen/treinen.component';
+import { TreinenelementComponent } from './treinen/treinenelement/treinenelement.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +28,17 @@ import { TabelComponent } from './inzet/tabel/tabel.component';
     InzetComponent,
     ResultaatComponent,
     TabsComponent,
-    TabelComponent
+    TabelComponent,
+    TreinComponent,
+    TreinenComponent,
+    TreinenelementComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
