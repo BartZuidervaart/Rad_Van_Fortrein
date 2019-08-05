@@ -4,14 +4,17 @@
             <!-- {{trein.origin}} naar Amsterdam van {{trein.geplandeAankomsten[0]}} -->
         </mat-panel-title>
     </mat-expansion-panel-header>
-    <div>
+    <pre>
+        {{inzet.id}}
+        {{inzet.speler.naam}}
+
         <!-- Deze trein is aangekomen op: {{trein.werkelijkeAankomsten[0]}}. <br>
         De trein {{isOpTijd ? ' is op tijd aangekomen.' : 'heeft vertraging op gelopen.'}} <br>
         Jij hebt {{resultaat ? 'goed' : 'fout'}} gegokt! <br>
         {{resultaat ? 'Je verdient hiermee ' : 'Je hebt helaas niks gewonnen.'}} {{teWinnenPunten}} punten. -->
-    </div>
+        </pre>
 </mat-expansion-panel>
 
-<br>{{inzet.id}}
+<!-- <br>{{inzet.id}}
 <br>{{inzet.speler.naam}}
-<br>{{trein.geplandeAankomsten}}
+<br>{{trein.geplandeAankomsten}} -->

@@ -3,7 +3,12 @@ import { Game } from '../Game/game';
 
 
 export class Inzet {
-    constructor(private _id: number, private _speler: Speler, private _game: Game, private _inzetBedrag: number, private _inzetTeLaat: boolean) {
+    constructor(
+        private _id: number, 
+        private _speler: Speler, 
+        private _game: Game, 
+        private _inzetBedrag: number, 
+        private _inzetTeLaat: boolean) {
     };
 
     get id () : number {

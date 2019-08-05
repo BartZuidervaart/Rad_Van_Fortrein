@@ -1,7 +1,9 @@
 <p>Hier kun je het resultaat bekijken als er op een trein is gegokt</p>
 
 <mat-accordion>
-    <app-resultaat-element></app-resultaat-element>
+    <div *ngFor="let inzet of inzetten">
+    <app-resultaat-element [inzet]='inzet'></app-resultaat-element>
+    </div>
 </mat-accordion>
 <br>
 Totaalpunten: {{Totaalpunten}}

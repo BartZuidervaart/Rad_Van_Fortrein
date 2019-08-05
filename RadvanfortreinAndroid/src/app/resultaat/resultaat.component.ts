@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Inzet } from '../domain/Inzet/inzet';
+import { InzetService } from '../service/inzet.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-resultaat',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultaatComponent implements OnInit {
 
-  constructor() { }
+  inzetten: Inzet[];
+
+  constructor(
+    private inzetService: InzetService
+  ) { }
 
   ngOnInit() {
+    this.inzetService.retrieveAll().subscribe(
+      (inzetten : Inzet[]) => this.inzetten = inzetten,
+      (error = HttpErrorResponse) => {
+        console.log(error);
+      },
+      () => {}
+    )
+  }
+
+  getInzetten(){
+    return this.inzetten;
   }
 
 }
