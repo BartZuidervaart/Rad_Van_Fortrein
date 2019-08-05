@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Inzet } from '../../../inzet';
+import { ActivatedRoute } from '@angular/router';
+import { InzetService } from '../../../service/inzet.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-resultaat-element',
@@ -6,14 +10,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./resultaat-element.component.css']
 })
 export class ResultaatElementComponent implements OnInit {
-  panelOpenState = false;
-  resultaat = true;
-  teWinnenPunten = 5;
-  isOpTijd = true;
-  
-  constructor() { }
+
+  inzet: Inzet;
+
+  constructor(
+    private route: ActivatedRoute,
+    private inzetService: InzetService,
+  ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(
+      data =>
+        this.inzetService.retrieveById(7).subscribe(
+          (inzet: Inzet) => this.inzet = inzet,
+          (fout: HttpErrorResponse) =>
+            alert("Er is een fout opgetreden: " +
+              fout.error.error.status + " " + fout.error.error + "\n" +
+              "\nMessage:\n" + fout.error.message
+            )
+        )
+    )
+    console.log("blub " + this.inzet)
   }
-
 }
+
+

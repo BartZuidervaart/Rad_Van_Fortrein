@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { StartComponent } from './domain/start/start.component';
@@ -17,6 +15,9 @@ import { MatToolbarModule, MatInputModule, MatButtonModule,
 import { TabsComponent } from './material/tabs/tabs.component';
 import { TabelComponent } from './domain/inzet/tabel/tabel.component';
 import { ResultaatElementComponent } from './domain/resultaat/resultaat-element/resultaat-element.component';
+import { ResultaatspelerComponent } from './domain/resultaatspeler/resultaatspeler.component';
+import { HttpClientModule } from '@angular/common/http';
+import { InzetService } from './service/inzet.service'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ResultaatElementComponent } from './domain/resultaat/resultaat-element/
     ResultaatComponent,
     TabsComponent,
     TabelComponent,
-    ResultaatElementComponent
+    ResultaatElementComponent,
+    ResultaatspelerComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,8 +51,9 @@ import { ResultaatElementComponent } from './domain/resultaat/resultaat-element/
     MatRadioModule,
     MatTableModule,
     MatExpansionModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ InzetService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

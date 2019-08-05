@@ -1,13 +1,17 @@
 <mat-expansion-panel>
     <mat-expansion-panel-header>
         <mat-panel-title>
-            {{vertrekStation}} naar Amsterdam van {{geplandeTijd}}
+            <!-- {{trein.origin}} naar Amsterdam van {{trein.geplandeAankomsten[0]}} -->
         </mat-panel-title>
     </mat-expansion-panel-header>
     <div>
-        Deze trein is aangekomen op: {{werkelijkeTijd}}. <br>
+        <!-- Deze trein is aangekomen op: {{trein.werkelijkeAankomsten[0]}}. <br>
         De trein {{isOpTijd ? ' is op tijd aangekomen.' : 'heeft vertraging op gelopen.'}} <br>
         Jij hebt {{resultaat ? 'goed' : 'fout'}} gegokt! <br>
-        {{resultaat ? 'Je verdient hiermee ' : 'Je hebt helaas niks gewonnen.'}} {{teWinnenPunten}} punten.
+        {{resultaat ? 'Je verdient hiermee ' : 'Je hebt helaas niks gewonnen.'}} {{teWinnenPunten}} punten. -->
     </div>
 </mat-expansion-panel>
+
+<br>{{inzet.id}}
+<br>{{inzet.speler}}
+<br>{{inzet.game}}
