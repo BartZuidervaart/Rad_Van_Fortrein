@@ -3,7 +3,7 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Kies een trein</ng-template>
-      <app-tabel></app-tabel>
+      <app-tabel (notify) = "onSelectionChanged($event)"></app-tabel>
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>

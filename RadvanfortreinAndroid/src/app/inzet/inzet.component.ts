@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import { TabelComponent } from './tabel/tabel.component';
+import { Station } from '../domain/Station/station';
+import { Trein } from '../domain/Trein/trein';
 
-export interface Trein {
-  naam: string;
-  beginStation: string;
-  station: string;
-  tijd: string;
-}
+// export interface Trein {
+//   naam: string;
+//   beginStation: string;
+//   station: string;
+//   tijd: string;
+// }
 
 export interface Keuze {
   value: string;
@@ -25,8 +27,10 @@ export class InzetComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   aantalPunten = 0;
-  selectedTrein: string;
+  selectedTrein: Trein;
   keuzeTeLaat: string;
+  treinen : Trein[];
+  station : Station;
 
   // treinen:  Trein[] = [
   //   {naam: 'ns 2273', beginStation: 'Vlissingen', station: 'Amsterdam', tijd: '12:07'},
@@ -51,12 +55,20 @@ export class InzetComponent implements OnInit {
     this.thirdFormGroup = new FormGroup({
       aantalPunten: new FormControl()
     });
+    this.treinen = [];
   }
 
   submit(){
     console.log(this.selectedTrein, this.keuzeTeLaat, this.aantalPunten);
     //Hier moet de inzet worden verstuurd!
     //En je gaat weer terug naar de home pagina
+    this.treinen.push(this.selectedTrein);
+    this.station = new Station("Amsterdam Centraal", "ASD", this.treinen);
+  }
+
+  onSelectionChanged(trein : Trein): void {
+    this.selectedTrein = trein;
+    console.log(this.selectedTrein);
   }
 
 }
