@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Inzet } from '../../../inzet';
+import { Inzet } from '../../domain/Inzet/inzet';
 import { ActivatedRoute } from '@angular/router';
-import { InzetService } from '../../../service/inzet.service';
+import { InzetService } from '../../service/inzet.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

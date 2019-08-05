@@ -1,5 +1,6 @@
-import { Speler } from './speler';
-import { Game } from './game';
+import { Speler } from '../Speler/speler';
+import { Game } from '../Game/game';
+
 
 export class Inzet {
     constructor(private _id: number, private _speler: Speler, private _game: Game, private _inzetBedrag: number, private _inzetTeLaat: boolean) {

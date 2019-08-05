@@ -1,4 +1,5 @@
-import { Inzet } from './inzet';
+import { Inzet } from "./inzet"
+
 
 describe('Inzet', () => {
   it('should create an instance', () => {
