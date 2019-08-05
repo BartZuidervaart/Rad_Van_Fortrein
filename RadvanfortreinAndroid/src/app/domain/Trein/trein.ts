@@ -3,8 +3,8 @@ export class Trein {
     constructor(
         private _naam: string,
         private _origin: string,
-        private _geplandeAankomsten: Array<string>,
-        private _werkelijkeAankomsten: Array<string>
+        private _geplandeAankomsten: string[],
+        private _werkelijkeAankomsten: string[]
     ) {}
 
     get naam() : string {
@@ -15,11 +15,11 @@ export class Trein {
         return this._origin;
     }
 
-    get geplandeAankomsten() {
+    get geplandeAankomsten() : string[] {
         return this._geplandeAankomsten;
     }
 
-    get werkelijkeAankomsten() {
+    get werkelijkeAankomsten() : string[] {
         return this._werkelijkeAankomsten;
     }
 }
