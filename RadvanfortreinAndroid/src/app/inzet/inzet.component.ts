@@ -7,6 +7,9 @@ import { StationService } from '../services/station.service';
 import { GameService } from '../services/game.service';
 import { InzetService } from '../services/inzet.service';
 import { SpelerService } from '../services/speler.service';
+import { Game } from '../domain/Game/game';
+import { Inzet } from '../domain/Inzet/inzet';
+import { Speler } from '../domain/Speler/speler';
 
 // export interface Trein {
 //   naam: string;
@@ -18,6 +21,7 @@ import { SpelerService } from '../services/speler.service';
 export interface Keuze {
   value: string;
   viewValue: string;
+  booleanValue: boolean;
 }
 
 @Component({
@@ -35,6 +39,9 @@ export class InzetComponent implements OnInit {
   keuzeTeLaat: string;
   treinen : Trein[];
   station : Station;
+  game : Game;
+  inzet : Inzet;
+  speler : Speler;
 
   // treinen:  Trein[] = [
   //   {naam: 'ns 2273', beginStation: 'Vlissingen', station: 'Amsterdam', tijd: '12:07'},
@@ -43,8 +50,8 @@ export class InzetComponent implements OnInit {
   // ];
 
   keuzes: Keuze[] = [
-    {value: 'op tijd is', viewValue: 'Op tijd'},
-    {value: 'te laat komt', viewValue: 'Te laat'}
+    {value: 'op tijd is', viewValue: 'Op tijd', booleanValue: false},
+    {value: 'te laat komt', viewValue: 'Te laat', booleanValue: true}
   ];
 
   constructor(
@@ -72,8 +79,21 @@ export class InzetComponent implements OnInit {
     //Hier moet de inzet worden verstuurd!
     //En je gaat weer terug naar de home pagina
     this.treinen.push(this.selectedTrein);
+    // create Station object
     this.station = new Station("Amsterdam Centraal", "ASD", this.treinen);
-    
+    // create Game object
+    this.game = new Game(0, this.selectedTrein, this.station, []);
+    // create Speler object
+    this.speler = new Speler(0, "Barry", 500, []);
+    // create Inzet object
+    this.inzet = new Inzet(0, this.speler , this.game, this.aantalPunten, this.keuzeTeLaat.endsWith("laat") ? true: false);
+    // update Game object
+    this.game.inzetten.push(this.inzet);
+    // update Speler object
+    this.speler.inzetten.push(this.inzet);
+
+    //@TODO alles naar de DB
+
   }
 
   onSelectionChanged(trein : Trein): void {
