@@ -3,6 +3,10 @@ import {FormGroup, FormControl} from '@angular/forms';
 import { TabelComponent } from './tabel/tabel.component';
 import { Station } from '../domain/Station/station';
 import { Trein } from '../domain/Trein/trein';
+import { StationService } from '../services/station.service';
+import { GameService } from '../services/game.service';
+import { InzetService } from '../services/inzet.service';
+import { SpelerService } from '../services/speler.service';
 
 // export interface Trein {
 //   naam: string;
@@ -43,7 +47,12 @@ export class InzetComponent implements OnInit {
     {value: 'te laat komt', viewValue: 'Te laat'}
   ];
 
-  constructor() { }
+  constructor(
+    private stationService : StationService,
+    private gameService : GameService,
+    private inzetService : InzetService,
+    private spelerService : SpelerService
+  ) { }
 
   ngOnInit() {
     this.firstFormGroup = new FormGroup({
@@ -64,6 +73,7 @@ export class InzetComponent implements OnInit {
     //En je gaat weer terug naar de home pagina
     this.treinen.push(this.selectedTrein);
     this.station = new Station("Amsterdam Centraal", "ASD", this.treinen);
+    
   }
 
   onSelectionChanged(trein : Trein): void {
