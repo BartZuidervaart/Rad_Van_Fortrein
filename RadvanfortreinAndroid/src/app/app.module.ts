@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { StartComponent } from './domain/start/start.component';
-import { InzetComponent } from './domain/inzet/inzet.component';
-import { ResultaatComponent } from './domain/resultaat/resultaat.component';
+import { StartComponent } from './start/start.component';
+import { InzetComponent } from './inzet/inzet.component';
+import { ResultaatComponent } from './resultaat/resultaat.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatInputModule, MatButtonModule, 
@@ -15,7 +16,10 @@ import { MatToolbarModule, MatInputModule, MatButtonModule,
   MatTabsModule, MatStepperModule, MatFormFieldModule, MatSliderModule, MatRadioModule, MatTableModule
  } from '@angular/material';
 import { TabsComponent } from './material/tabs/tabs.component';
-import { TabelComponent } from './domain/inzet/tabel/tabel.component';
+import { TabelComponent } from './inzet/tabel/tabel.component';
+import { TreinComponent } from './trein/trein.component';
+import { TreinenComponent } from './treinen/treinen.component';
+import { TreinenelementComponent } from './treinen/treinenelement/treinenelement.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +28,17 @@ import { TabelComponent } from './domain/inzet/tabel/tabel.component';
     InzetComponent,
     ResultaatComponent,
     TabsComponent,
-    TabelComponent
+    TabelComponent,
+    TreinComponent,
+    TreinenComponent,
+    TreinenelementComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { StartComponent } from './domain/start/start.component';
-import { InzetComponent } from './domain/inzet/inzet.component';
-import { ResultaatComponent } from './domain/resultaat/resultaat.component';
-import { TabelComponent } from './domain/inzet/tabel/tabel.component';
+import { StartComponent } from './start/start.component';
+import { InzetComponent } from './inzet/inzet.component';
+import { ResultaatComponent } from './resultaat/resultaat.component';
+import { TabelComponent } from './inzet/tabel/tabel.component';
 
 
 const routes: Routes = [
