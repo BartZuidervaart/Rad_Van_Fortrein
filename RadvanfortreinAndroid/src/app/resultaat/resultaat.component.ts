@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< Updated upstream
-=======
 import { Inzet } from '../domain/Inzet/inzet';
 import { InzetService } from '../service/inzet.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SpelerService } from '../service/speler.service';
 import { Speler } from '../domain/Speler/speler';
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-resultaat',
@@ -15,15 +12,6 @@ import { Speler } from '../domain/Speler/speler';
 })
 export class ResultaatComponent implements OnInit {
 
-<<<<<<< Updated upstream
-  constructor() { }
-
-  constructor(
-    private inzetService: InzetService
-  ) { }
-
-  ngOnInit() {
-=======
   inzetten: Inzet[];
   spelers: Speler[];
 
@@ -53,7 +41,6 @@ export class ResultaatComponent implements OnInit {
 
   getInzetten(){
     return this.inzetten;
->>>>>>> Stashed changes
   }
   
   getSpelers(){

@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { StartComponent } from './start/start.component';
@@ -14,17 +16,14 @@ import { MatToolbarModule, MatInputModule, MatButtonModule,
  } from '@angular/material';
 import { TabsComponent } from './material/tabs/tabs.component';
 import { TabelComponent } from './inzet/tabel/tabel.component';
-<<<<<<< Updated upstream
 import { TreinComponent } from './trein/trein.component';
 import { TreinenComponent } from './treinen/treinen.component';
 import { TreinenelementComponent } from './treinen/treinenelement/treinenelement.component';
-=======
 import { ResultaatElementComponent } from './resultaat/resultaat-element/resultaat-element.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InzetService } from './service/inzet.service';
 import { InzettenComponent } from './inzetten/inzetten.component';
 import { SpelersComponent } from './spelers/spelers.component'
->>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -34,21 +33,19 @@ import { SpelersComponent } from './spelers/spelers.component'
     ResultaatComponent,
     TabsComponent,
     TabelComponent,
-<<<<<<< Updated upstream
     TreinComponent,
     TreinenComponent,
     TreinenelementComponent
-=======
     ResultaatElementComponent,
     InzettenComponent,
     SpelersComponent,
->>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
