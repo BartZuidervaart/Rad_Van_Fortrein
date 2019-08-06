@@ -20,7 +20,6 @@ import { TreinComponent } from './trein/trein.component';
 import { TreinenComponent } from './treinen/treinen.component';
 import { TreinenelementComponent } from './treinen/treinenelement/treinenelement.component';
 import { ResultaatElementComponent } from './resultaat/resultaat-element/resultaat-element.component';
-import { HttpClientModule } from '@angular/common/http';
 import { InzetService } from './service/inzet.service';
 import { InzettenComponent } from './inzetten/inzetten.component';
 import { SpelersComponent } from './spelers/spelers.component'
@@ -35,7 +34,7 @@ import { SpelersComponent } from './spelers/spelers.component'
     TabelComponent,
     TreinComponent,
     TreinenComponent,
-    TreinenelementComponent
+    TreinenelementComponent,
     ResultaatElementComponent,
     InzettenComponent,
     SpelersComponent,
