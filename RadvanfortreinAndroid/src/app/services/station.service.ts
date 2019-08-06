@@ -30,7 +30,7 @@ export class StationService {
   }
 
   public update(station:Station): Observable<Station> {
-    return this.http.put<Station>(`${environment.radVanFortreinURL}/api/stations/${station.naam}`,
+    return this.http.put<Station>(`${environment.radVanFortreinURL}/api/stations/${station.getNaam}`,
         station, this.httpOptions)
   }
 

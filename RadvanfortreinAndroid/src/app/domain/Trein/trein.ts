@@ -1,25 +1,25 @@
 export class Trein {
 
     constructor(
-        private _naam: string,
-        private _origin: string,
-        private _geplandeAankomsten: string[],
-        private _werkelijkeAankomsten: string[]
+        private naam: string,
+        private origin: string,
+        private geplandeAankomsten: string[],
+        private werkelijkeAankomsten: string[]
     ) {}
 
-    get naam() : string {
-        return this._naam;
+    get getNaam() : string {
+        return this.naam;
     }
 
-    get origin() : string {
-        return this._origin;
+    get getOrigin() : string {
+        return this.origin;
     }
 
-    get geplandeAankomsten() : string[] {
-        return this._geplandeAankomsten;
+    get getGeplandeAankomsten() : string[] {
+        return this.geplandeAankomsten;
     }
 
-    get werkelijkeAankomsten() : string[] {
-        return this._werkelijkeAankomsten;
+    get getWerkelijkeAankomsten() : string[] {
+        return this.werkelijkeAankomsten;
     }
 }

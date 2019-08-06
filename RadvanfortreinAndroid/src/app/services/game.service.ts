@@ -30,7 +30,7 @@ export class GameService {
   }
 
   public update(game:Game): Observable<Game> {
-    return this.http.put<Game>(`${environment.radVanFortreinURL}/api/games/${game.id}`,
+    return this.http.put<Game>(`${environment.radVanFortreinURL}/api/games/${game.getId}`,
         game, this.httpOptions)
   }
 

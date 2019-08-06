@@ -5,25 +5,25 @@ import { Inzet } from '../Inzet/inzet';
 export class Game {
 
     constructor(
-        private _id:number,
-        private _trein: Trein,
-        private _station: Station,
-        private _inzetten : Inzet[]
+        private id:number,
+        private trein: Trein,
+        private station: Station,
+        private inzetten : Inzet[]
     ) {}
 
-    get id() : number {
-        return this._id;
+    get getId() : number {
+        return this.id;
     }
 
-    get trein() : Trein {
-        return this._trein;
+    get getTrein() : Trein {
+        return this.trein;
     }
 
-    get station() : Station {
-        return this._station;
+    get getStation() : Station {
+        return this.station;
     }
 
-    get inzetten() : Inzet[] {
-        return this._inzetten;
+    get getInzetten() : Inzet[] {
+        return this.inzetten;
     }
 }

@@ -4,30 +4,30 @@ import { Game } from '../Game/game';
 export class Inzet {
 
     constructor(
-        private _id : number,
-        private _speler : Speler,
-        private _game : Game,
-        private _inzetBedrag : number,
-        private _inzetTeLaat : boolean
+        private id : number,
+        private speler : Speler,
+        private game : Game,
+        private inzetBedrag : number,
+        private inzetTeLaat : boolean
     ) {}
 
-    get id() : number {
-        return this._id;
+    get getId() : number {
+        return this.id;
     }
 
-    get speler() : Speler {
-        return this._speler;
+    get getSpeler() : Speler {
+        return this.speler;
     }
 
-    get game() : Game {
-        return this._game;
+    get getGame() : Game {
+        return this.game;
     }
 
-    get inzetBedrag() : number {
-        return this._inzetBedrag;
+    get getInzetBedrag() : number {
+        return this.inzetBedrag;
     }
 
-    get inzetTeLaat() : boolean {
-        return this._inzetTeLaat;
+    get getInzetTeLaat() : boolean {
+        return this.inzetTeLaat;
     }
 }

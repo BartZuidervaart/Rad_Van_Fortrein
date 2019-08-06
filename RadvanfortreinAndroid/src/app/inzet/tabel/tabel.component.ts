@@ -49,7 +49,7 @@ export class TabelComponent implements OnInit{
   }
 
   submit() {
-    console.log(this.selectedEntry.naam);
+    console.log(this.selectedEntry.getNaam);
   }
 }
 

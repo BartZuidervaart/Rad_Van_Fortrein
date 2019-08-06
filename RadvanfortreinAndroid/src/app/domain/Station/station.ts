@@ -3,20 +3,32 @@ import { Trein } from '../Trein/trein';
 export class Station {
 
     constructor(
-        private _naam : string,
-        private _code : string,
-        private _treinen : Trein[]
+        private naam : string,
+        private code : string,
+        private treinen : Trein[]
     ) {}
 
-    get naam() : string {
-        return this._naam;
+    get getNaam() : string {
+        return this.naam;
     }
 
-    get code() : string {
-        return this._code;
+    set getNaam(naam: string) {
+        this.naam = naam;
     }
 
-    get treinen() : Trein[] {
-        return this._treinen;
+    get getCode() : string {
+        return this.code;
+    }
+
+    set getCode(code : string) {
+        this.code = code;
+    }
+
+    get getTreinen() : Trein[] {
+        return this.treinen;
+    }
+
+    set getTreinen(treinen : Trein[]) {
+        this.treinen = treinen;
     }
 }

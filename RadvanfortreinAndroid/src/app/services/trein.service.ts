@@ -31,7 +31,7 @@ export class TreinService {
   }
 
   public update(trein:Trein): Observable<Trein> {
-    return this.http.put<Trein>(`${environment.radVanFortreinURL}/api/treinen/${trein.naam}`,
+    return this.http.put<Trein>(`${environment.radVanFortreinURL}/api/treinen/${trein.getNaam}`,
         trein, this.httpOptions)
   }
 

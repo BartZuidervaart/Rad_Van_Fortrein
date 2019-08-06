@@ -10,6 +10,7 @@ import { SpelerService } from '../services/speler.service';
 import { Game } from '../domain/Game/game';
 import { Inzet } from '../domain/Inzet/inzet';
 import { Speler } from '../domain/Speler/speler';
+import { HttpErrorResponse } from '@angular/common/http';
 
 // export interface Trein {
 //   naam: string;
@@ -88,11 +89,22 @@ export class InzetComponent implements OnInit {
     // create Inzet object
     this.inzet = new Inzet(0, this.speler , this.game, this.aantalPunten, this.keuzeTeLaat.endsWith("laat") ? true: false);
     // update Game object
-    this.game.inzetten.push(this.inzet);
+    this.game.getInzetten.push(this.inzet);
     // update Speler object
-    this.speler.inzetten.push(this.inzet);
+    this.speler.getInzetten.push(this.inzet);
 
     //@TODO alles naar de DB
+    console.log(this.station);
+    this.stationService.create(this.station).subscribe(
+      data  => {
+        console.log("POST Request is successful ", data);
+        },
+        error  => {
+        
+        console.log("Error", error);
+        
+        }
+    );
 
   }
 
