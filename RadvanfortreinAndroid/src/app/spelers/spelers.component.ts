@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Speler } from '../domain/Speler/speler';
 import { ActivatedRoute } from '@angular/router';
-import { SpelerService } from '../service/speler.service';
+import { SpelerService } from '../services/speler.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

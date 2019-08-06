@@ -4,7 +4,7 @@ export class Trein {
         private _naam: string,
         private _origin: string,
         private _geplandeAankomsten: Array<string>,
-        private _werkelijkeAankomsten: Array<string>
+        private _werkelijkeAankomsten: Array<string>,
     ) {}
 
     get naam() : string {

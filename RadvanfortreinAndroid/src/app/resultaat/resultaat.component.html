@@ -1,19 +1,27 @@
 <p>Hier kun je het resultaat bekijken als er op een trein is gegokt</p>
 
 <mat-accordion>
-    <!-- <div *ngFor="let inzet of inzetten">
-            <app-resultaat-element [inzet]='inzet'></app-resultaat-element>
-    </div> -->
-    <div *ngFor="let speler of spelers">
-            <app-resultaat-element [speler]='speler'></app-resultaat-element>
-    </div>
+
+        <div *ngFor="let inzet of inzettenArray">
+                <mat-expansion-panel >
+                        <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                        {{inzet.game.trein.origin}} naar Amsterdam 
+                                        van {{inzet.game.trein.geplandeAankomsten[0].substring(11,16)}}
+                                </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <!-- {{speler.naam}}
+                        {{speler.totaalPunten}}
+                        {{inzet.id}}
+                        {{inzet.game.id}}
+                        {{inzet.game.trein.origin}} -->
+                        De trein is aangekomen op: {{inzet.game.trein.werkelijkeAankomsten[0].substring(11,16)}}. <br>
+                        De trein {{inzet.game.trein.teLaat ? ' heeft vertraging op gelopen.' : ' is op tijd aangekomen.'}} <br>
+                        Jij hebt {{inzet.inzetTeLaat == inzet.game.trein.teLaat ? 'goed' : 'fout'}} gegokt! <br>
+                        {{inzet.inzetTeLaat == inzet.game.trein.teLaat ? 'Je verdient hiermee ' : 'Je loopt hierdoor '}} {{inzet.inzetBedrag * 2}} 
+                        {{inzet.inzetTeLaat == inzet.game.trein.teLaat ? 'punten.' : 'punten mis.'}}
+                </mat-expansion-panel>
+        </div>
 </mat-accordion>
 <br>
-Totaalpunten: <!--{{speler[0].totaalPunten}}-->
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+<div>Totaalpunten: {{totaalPunten}}</div>

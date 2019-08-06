@@ -5,8 +5,9 @@ export class Speler {
     constructor(
         private _id: number,
         private _naam: string,
-        private _totaalPunten: number,
-        private _inzetten: Array<Inzet>,
+        public _totaalPunten: number,
+        // private _inzetten: Array<Inzet>,
+        private _inzetten: Inzet[],
     ){};
 
     get id() : number { return this._id}

@@ -7,7 +7,7 @@ export class Game {
         private _id: number,
         private _trein: Trein,
         private _station: Station,
-        private _inzetten: Array<Inzet>,
+        private _inzetten: Inzet[],
         private _resultaat: number,
     ){
     };
