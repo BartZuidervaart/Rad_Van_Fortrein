@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { StartComponent } from './start/start.component';
@@ -13,13 +12,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatInputModule, MatButtonModule, 
   MatSelectModule, MatIconModule,MatSidenavModule, MatListModule,
-  MatTabsModule, MatStepperModule, MatFormFieldModule, MatSliderModule, MatRadioModule, MatTableModule
+  MatTabsModule, MatStepperModule, MatFormFieldModule, MatSliderModule, MatRadioModule, MatTableModule, MatExpansionModule
  } from '@angular/material';
 import { TabsComponent } from './material/tabs/tabs.component';
 import { TabelComponent } from './inzet/tabel/tabel.component';
 import { TreinComponent } from './trein/trein.component';
 import { TreinenComponent } from './treinen/treinen.component';
 import { TreinenelementComponent } from './treinen/treinenelement/treinenelement.component';
+import { ResultaatElementComponent } from './resultaat/resultaat-element/resultaat-element.component';
+import { HttpClientModule } from '@angular/common/http';
+import { InzetService } from './service/inzet.service';
+import { InzettenComponent } from './inzetten/inzetten.component';
+import { SpelersComponent } from './spelers/spelers.component'
 
 @NgModule({
   declarations: [
@@ -32,6 +36,9 @@ import { TreinenelementComponent } from './treinen/treinenelement/treinenelement
     TreinComponent,
     TreinenComponent,
     TreinenelementComponent
+    ResultaatElementComponent,
+    InzettenComponent,
+    SpelersComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,8 +61,10 @@ import { TreinenelementComponent } from './treinen/treinenelement/treinenelement
     ReactiveFormsModule,
     MatRadioModule,
     MatTableModule,
+    MatExpansionModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ InzetService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

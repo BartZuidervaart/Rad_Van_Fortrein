@@ -40,7 +40,6 @@ export class TabelComponent implements OnInit{
     )
   }
 
-
   onSelectionChange(entry) {
     this.selectedEntry = entry;
     console.log(this.selectedEntry);

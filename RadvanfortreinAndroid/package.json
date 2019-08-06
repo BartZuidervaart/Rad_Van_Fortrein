@@ -1,5 +1,5 @@
 {
-  "name": "angular-cordova",
+  "name": "Rad_van_fortrein",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -12,7 +12,7 @@
     "cordova": "cordova run android --device"
   },
   "private": true,
-  "author": "Apache Cordova Team",
+  "author": "Rad van Fortrein Team",
   "dependencies": {
     "@angular/animations": "^9.0.0-next.0",
     "@angular/cdk": "~8.1.2",

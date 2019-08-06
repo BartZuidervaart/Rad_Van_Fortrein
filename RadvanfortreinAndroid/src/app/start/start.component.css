@@ -1,0 +1,15 @@
+.startbutton{
+    width: 80%;
+    max-width: 300 px;
+    height: 20%;
+    font-size: 300%;
+    margin:20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+h1{
+    text-align: center;
+}

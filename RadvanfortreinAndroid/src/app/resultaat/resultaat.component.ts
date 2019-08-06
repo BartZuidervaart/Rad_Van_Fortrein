@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Inzet } from '../domain/Inzet/inzet';
+import { InzetService } from '../service/inzet.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { SpelerService } from '../service/speler.service';
+import { Speler } from '../domain/Speler/speler';
 
 @Component({
   selector: 'app-resultaat',
@@ -7,9 +12,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultaatComponent implements OnInit {
 
-  constructor() { }
+  inzetten: Inzet[];
+  spelers: Speler[];
+
+  constructor(
+    private inzetService: InzetService,
+    private spelerService: SpelerService,
+  ) { }
 
   ngOnInit() {
+    this.inzetService.retrieveAll().subscribe(
+      (inzetten : Inzet[]) => {
+        this.inzetten = inzetten},
+      (error = HttpErrorResponse) => {
+        console.log(error);
+      },
+      () => {}
+    )
+    this.spelerService.retrieveAll().subscribe(
+      (spelers : Speler[]) => {
+        this.spelers = spelers},
+      (error = HttpErrorResponse) => {
+        console.log(error);
+      },
+      () => {}
+    )
+  }
+
+  getInzetten(){
+    return this.inzetten;
+  }
+  
+  getSpelers(){
+    return this.spelers;
   }
 
 }
