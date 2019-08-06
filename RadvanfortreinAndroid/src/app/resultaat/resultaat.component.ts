@@ -14,6 +14,8 @@ export class ResultaatComponent implements OnInit {
 
   inzetten: Inzet[];
   spelers: Speler[];
+  speler: Speler;
+
 
   constructor(
     private inzetService: InzetService,
@@ -45,6 +47,10 @@ export class ResultaatComponent implements OnInit {
   
   getSpelers(){
     return this.spelers;
+  }
+  
+  getSpeler(){
+    return this.speler;
   }
 
 }

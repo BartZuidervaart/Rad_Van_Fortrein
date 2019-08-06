@@ -11,8 +11,7 @@ export class ResultaatElementComponent implements OnInit {
 @Input("inzet") inzet: Inzet;
 @Input("speler") speler: Speler;
  
-
-  constructor(
+constructor(
  
   ) { }
 
