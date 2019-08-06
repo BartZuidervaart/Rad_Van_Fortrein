@@ -1,9 +1,19 @@
 <p>Hier kun je het resultaat bekijken als er op een trein is gegokt</p>
 
+<<<<<<< Updated upstream
+
+<ul>View inzet</ul>
+<ul>View result</ul>
+<ul>View points</ul>
+=======
 <mat-accordion>
-    <div *ngFor="let inzet of inzetten">
-    <app-resultaat-element [inzet]='inzet'></app-resultaat-element>
+    <!-- <div *ngFor="let inzet of inzetten">
+            <app-resultaat-element [inzet]='inzet'></app-resultaat-element>
+    </div> -->
+    <div *ngFor="let speler of spelers">
+            <app-resultaat-element [speler]='speler'></app-resultaat-element>
     </div>
 </mat-accordion>
 <br>
-Totaalpunten: {{Totaalpunten}}
+Totaalpunten: <!--{{speler[0].totaalPunten}}-->
+>>>>>>> Stashed changes

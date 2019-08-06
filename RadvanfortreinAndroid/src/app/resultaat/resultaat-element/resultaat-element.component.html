@@ -5,8 +5,10 @@
         </mat-panel-title>
     </mat-expansion-panel-header>
     <pre>
-        {{inzet.id}}
-        {{inzet.speler.naam}}
+        <!-- {{inzet.id}} -->
+        {{speler.naam}}
+        {{speler.totaalPunten}}
+        {{speler.inzetten.id[7]}}
 
         <!-- Deze trein is aangekomen op: {{trein.werkelijkeAankomsten[0]}}. <br>
         De trein {{isOpTijd ? ' is op tijd aangekomen.' : 'heeft vertraging op gelopen.'}} <br>

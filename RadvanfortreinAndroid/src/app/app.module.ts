@@ -14,10 +14,17 @@ import { MatToolbarModule, MatInputModule, MatButtonModule,
  } from '@angular/material';
 import { TabsComponent } from './material/tabs/tabs.component';
 import { TabelComponent } from './inzet/tabel/tabel.component';
+<<<<<<< Updated upstream
+import { TreinComponent } from './trein/trein.component';
+import { TreinenComponent } from './treinen/treinen.component';
+import { TreinenelementComponent } from './treinen/treinenelement/treinenelement.component';
+=======
 import { ResultaatElementComponent } from './resultaat/resultaat-element/resultaat-element.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InzetService } from './service/inzet.service';
-import { InzettenComponent } from './inzetten/inzetten.component'
+import { InzettenComponent } from './inzetten/inzetten.component';
+import { SpelersComponent } from './spelers/spelers.component'
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -27,8 +34,15 @@ import { InzettenComponent } from './inzetten/inzetten.component'
     ResultaatComponent,
     TabsComponent,
     TabelComponent,
+<<<<<<< Updated upstream
+    TreinComponent,
+    TreinenComponent,
+    TreinenelementComponent
+=======
     ResultaatElementComponent,
     InzettenComponent,
+    SpelersComponent,
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
