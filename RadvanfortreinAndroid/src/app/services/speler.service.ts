@@ -20,5 +20,7 @@ export class SpelerService {
 
   public retrieveById(id: number): Observable<Speler> {
     return this.http.get<Speler>(`${environment.rvftUrl}/spelers/${id}`)
+
+    
   }
 }
