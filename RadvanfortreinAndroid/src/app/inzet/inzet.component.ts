@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import { TabelComponent } from './tabel/tabel.component';
+import { Trein } from '../domain/Trein/trein';
 
-export interface Trein {
-  naam: string;
-  beginStation: string;
-  station: string;
-  tijd: string;
-}
+// export interface Trein {
+//   naam: string;
+//   beginStation: string;
+//   station: string;
+//   tijd: string;
+// }
 
 export interface Keuze {
   value: string;
@@ -25,21 +26,22 @@ export class InzetComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   aantalPunten = 0;
-  selectedTrein: string;
+  selectedTrein: Trein;
   keuzeTeLaat: string;
 
-  treinen:  Trein[] = [
-    {naam: 'ns 2273', beginStation: 'Vlissingen', station: 'Amsterdam', tijd: '12:07'},
-    {naam: 'ns 4066', beginStation: 'Rotterdam Centraal', station: 'Amsterdam', tijd: '12:13'},
-    {naam: 'ns 14668', beginStation: 'Zwolle', station: 'Amsterdam', tijd: '12:19'}
-  ];
+  // treinen:  Trein[] = [
+  //   {naam: 'ns 2273', beginStation: 'Vlissingen', station: 'Amsterdam', tijd: '12:07'},
+  //   {naam: 'ns 4066', beginStation: 'Rotterdam Centraal', station: 'Amsterdam', tijd: '12:13'},
+  //   {naam: 'ns 14668', beginStation: 'Zwolle', station: 'Amsterdam', tijd: '12:19'}
+  // ];
 
   keuzes: Keuze[] = [
     {value: 'op tijd is', viewValue: 'Op tijd'},
     {value: 'te laat komt', viewValue: 'Te laat'}
   ];
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
     this.firstFormGroup = new FormGroup({
@@ -59,4 +61,8 @@ export class InzetComponent implements OnInit {
     //En je gaat weer terug naar de home pagina
   }
 
+  onSelectionChanged(trein:Trein): void {
+    this.selectedTrein = trein;
+    console.log(this.selectedTrein);
+  }
 }

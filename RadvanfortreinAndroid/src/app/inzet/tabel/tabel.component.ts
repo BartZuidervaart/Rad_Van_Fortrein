@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { TreinenComponent } from '../../../../src/app/treinen/treinen.component';
 import { Trein } from '../../../../src/app/domain/Trein/trein';
@@ -21,6 +21,7 @@ const ELEMENT_DATA: Trein[] = [];
   styleUrls: ['./tabel.component.css']
 })
 export class TabelComponent implements OnInit{
+  @Output() notify: EventEmitter<Trein> = new EventEmitter<Trein>();
   displayedColumns: string[] = ['select', 'tijd', 'vertrekstation', 'treinnaam'];
   selectedEntry;
   treinen: Trein[];
@@ -42,7 +43,8 @@ export class TabelComponent implements OnInit{
 
   onSelectionChange(entry) {
     this.selectedEntry = entry;
-    console.log(this.selectedEntry);
+    this.notify.emit(this.selectedEntry);
+    // console.log(this.selectedEntry);
   }
 
   submit() {

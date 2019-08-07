@@ -19,6 +19,7 @@ export class ResultaatComponent implements OnInit {
   inzettenArray: Inzet[];
   totaalPunten: number;
   indexTijd : number = 0;
+  spelerInzetten : number[];
 
   constructor(
     private inzetService: InzetService,
@@ -39,9 +40,16 @@ export class ResultaatComponent implements OnInit {
     this.spelerService.retrieveById(this.spelerId).subscribe(
       (speler: Speler) => {
         this.speler = speler;
-        this.inzettenArray = speler.inzetten;
-        console.log(JSON.stringify(this.speler.inzetten));
-        this.totaalPunten = speler.totaalPunten;
+        this.spelerInzetten = speler.getInzetten;
+        console.log(JSON.stringify(this.speler.getInzetten));
+        this.totaalPunten = speler.getTotaalPunten;
+        for (let inzetId of this.spelerInzetten) {
+          for (let inzet of this.inzetten) {
+            if (inzetId === inzet.getId) {
+              this.inzettenArray.push(inzet);
+            }
+          }
+        }
         
       },
 

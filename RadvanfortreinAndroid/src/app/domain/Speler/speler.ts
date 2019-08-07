@@ -7,7 +7,7 @@ export class Speler {
         private naam: string,
         private totaalPunten: number,
         // private _inzetten: Array<Inzet>,
-        private inzetten: string[],
+        private inzetten: number[],
     ){};
 
     get getId() : number { return this.id}

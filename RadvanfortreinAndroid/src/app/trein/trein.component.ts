@@ -25,7 +25,7 @@ export class TreinComponent implements OnInit {
         this.treinService.retrieveByNaam(data.naam).subscribe(
           (trein: Trein) => {
             this.trein = trein;
-            console.log(trein.origin)
+            console.log(trein.getOrigin)
           },
           (fout: HttpErrorResponse) =>
             alert("Er is een fout opgetreden: " +

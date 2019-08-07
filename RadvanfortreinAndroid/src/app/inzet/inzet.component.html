@@ -1,51 +1,51 @@
 <!-- <p>Hier kun je inzetten op een trein</p> -->
 <mat-vertical-stepper [linear]="!isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Kies een trein</ng-template>
-      <app-tabel></app-tabel>
-      <!-- De link tussen dit inzet component en de trein tabel component 
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Kies een trein</ng-template>
+            <app-tabel (notify)="onSelectionChanged($event)"></app-tabel>
+            <!-- De link tussen dit inzet component en de trein tabel component 
         moet nog gemaakt worden dmv van een service bestand. Evt icm het ophalen uit de database-->
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Op tijd of te laat?</ng-template>
-      <mat-radio-group aria-label="Maak een keuze" [(ngModel)]="keuzeTeLaat" [ngModelOptions]="{standalone: true}">
-        <mat-radio-button class="radio-button" *ngFor="let keuze of keuzes" [value]="keuze.value">
-            {{keuze.viewValue}}
-          </mat-radio-button>
-      </mat-radio-group>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Op tijd of te laat?</ng-template>
+            <mat-radio-group aria-label="Maak een keuze" [(ngModel)]="keuzeTeLaat" [ngModelOptions]="{standalone: true}">
+                <mat-radio-button class="radio-button" *ngFor="let keuze of keuzes" [value]="keuze.value">
+                    {{keuze.viewValue}}
+                </mat-radio-button>
+            </mat-radio-group>
 
-      <br>
-      <div>
-        <button mat-button matStepperPrevious>Terug</button>
-        <button mat-button matStepperNext>Volgende</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="thirdFormGroup">
-    <form [formGroup]="thirdFormGroup">
-      <ng-template matStepLabel>Hoe veel punten wil je inzetten?</ng-template>
-      <!-- De max value zou aanpasbaar moeten worden aan de hand van de max punten van de speler. -->
-      <br>
-      <mat-slider min="1" max="50" thumbLabel [(value)]="aantalPunten"></mat-slider>
-      <div>
-        <button mat-button matStepperPrevious>Terug</button>
-        <button mat-button matStepperNext>Volgende</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Klaar</ng-template>
-    <p>Je denkt dat de trein uit {{selectedTrein}} {{keuzeTeLaat}}. Daar zet je op in met {{aantalPunten}} punten. </p>
-    <p>Klik op de knop 'submit' om je inzet vast te leggen.</p><br>
-    <div>
-      <button mat-button matStepperPrevious>Terug</button>
-      <button mat-button (click)="submit()">Submit</button>
-    </div>
-  </mat-step>
+            <br>
+            <div>
+                <button mat-button matStepperPrevious>Terug</button>
+                <button mat-button matStepperNext>Volgende</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>Hoe veel punten wil je inzetten?</ng-template>
+            <!-- De max value zou aanpasbaar moeten worden aan de hand van de max punten van de speler. -->
+            <br>
+            <mat-slider min="1" max="50" thumbLabel [(value)]="aantalPunten"></mat-slider>
+            <div>
+                <button mat-button matStepperPrevious>Terug</button>
+                <button mat-button matStepperNext>Volgende</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Klaar</ng-template>
+        <p>Je denkt dat de trein uit {{selectedTrein}} {{keuzeTeLaat}}. Daar zet je op in met {{aantalPunten}} punten. </p>
+        <p>Klik op de knop 'submit' om je inzet vast te leggen.</p><br>
+        <div>
+            <button mat-button matStepperPrevious>Terug</button>
+            <button mat-button (click)="submit()">Submit</button>
+        </div>
+    </mat-step>
 </mat-vertical-stepper>

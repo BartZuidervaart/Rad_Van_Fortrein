@@ -18,24 +18,24 @@ export class TreinService {
   ) { }
 
   public create (trein : Trein): Observable<Trein> {
-    return this.http.post<Trein>(`${environment.radVanFortreinURL}/api/treinen`,
+    return this.http.post<Trein>(`${environment.radVanFortreinURL}/treinen`,
         trein, this.httpOptions)
   }
 
   public retrieveAll(): Observable<Trein[]> {
-    return this.http.get<Trein[]>(`${environment.radVanFortreinURL}/api/treinen`)
+    return this.http.get<Trein[]>(`${environment.radVanFortreinURL}/treinen`)
   }
 
   public retrieveByNaam(naam:string): Observable<Trein> {
-    return this.http.get<Trein>(`${environment.radVanFortreinURL}/api/treinen/${naam}`)
+    return this.http.get<Trein>(`${environment.radVanFortreinURL}/treinen/${naam}`)
   }
 
   public update(trein:Trein): Observable<Trein> {
-    return this.http.put<Trein>(`${environment.radVanFortreinURL}/api/treinen/${trein.naam}`,
+    return this.http.put<Trein>(`${environment.radVanFortreinURL}/treinen/${trein.getNaam}`,
         trein, this.httpOptions)
   }
 
   public delete(naam:string): Observable<void> {
-    return this.http.delete<void>(`${environment.radVanFortreinURL}/api/treinen/${naam}`);
+    return this.http.delete<void>(`${environment.radVanFortreinURL}/treinen/${naam}`);
   }
 }
