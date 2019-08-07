@@ -2,7 +2,6 @@
 <mat-accordion>
         <div *ngFor="let inzet of inzettenArray; index as i">
                 <app-resultaat-element 
-                
                 [inzet]='inzet' 
                 (click)='ResultaatClick(inzet, i)' 
                 >
