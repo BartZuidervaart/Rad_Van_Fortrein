@@ -8,7 +8,7 @@ export class Game {
         private id:number,
         private trein: Trein,
         private station: Station,
-        private inzetten : Inzet[]
+        private inzetten : Array<Inzet>
     ) {}
 
     get getId() : number {
@@ -23,7 +23,7 @@ export class Game {
         return this.station;
     }
 
-    get getInzetten() : Inzet[] {
+    get getInzetten() : Array<Inzet> {
         return this.inzetten;
     }
 }

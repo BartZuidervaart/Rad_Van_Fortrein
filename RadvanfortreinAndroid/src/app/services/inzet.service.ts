@@ -3,6 +3,8 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Inzet } from '../domain/Inzet/inzet';
 import { Observable } from 'rxjs';
 import { environment } from '../../../src/environments/environment';
+import { Speler } from '../domain/Speler/speler';
+import { InzetSpelerHolder } from '../domain/InzetSpelerHolder/inzet-speler-holder';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +19,9 @@ export class InzetService {
     private http : HttpClient
   ) { }
 
-  public create (inzet : Inzet): Observable<Inzet> {
-    return this.http.post<Inzet>(`${environment.radVanFortreinURL}/api/inzetten`,
-        inzet, this.httpOptions)
+  public create (holder : InzetSpelerHolder, gameId : number): Observable<Inzet> {
+    return this.http.post<Inzet>(`${environment.radVanFortreinURL}/api/inzetten/${gameId}`,
+        holder, this.httpOptions)
   }
 
   public retrieveAll(): Observable<Inzet[]> {
