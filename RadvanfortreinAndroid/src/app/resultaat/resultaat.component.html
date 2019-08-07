@@ -1,7 +1,12 @@
 <p>Hier kun je het resultaat bekijken als er op een trein is gegokt</p>
 <mat-accordion>
         <div *ngFor="let inzet of inzettenArray; index as i">
-                <app-resultaat-element [inzet]='inzet' (click)='UpdatePunten(inzet, i)'></app-resultaat-element>
+                <app-resultaat-element 
+                
+                [inzet]='inzet' 
+                (click)='ResultaatClick(inzet, i)' 
+                >
+        </app-resultaat-element>
         </div>
 </mat-accordion>
 <br>

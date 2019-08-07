@@ -18,8 +18,9 @@ export class ResultaatComponent implements OnInit {
   speler: Speler;
   spelerId = 3;
   inzettenArray: Inzet[];
-  totaalPunten: number; 
+  totaalPunten: number;
   resultaat: boolean;
+  clicked: boolean[] = [false];
 
   constructor(
     private inzetService: InzetService,
@@ -28,15 +29,15 @@ export class ResultaatComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.inzetService.retrieveAll().subscribe(
-      (inzetten: Inzet[]) => {
-        this.inzetten = inzetten
-      },
-      (error = HttpErrorResponse) => {
-        console.log(error);
-      },
-      () => { }
-    )
+    // this.inzetService.retrieveAll().subscribe(
+    //   (inzetten: Inzet[]) => {
+    //     this.inzetten = inzetten
+    //   },
+    //   (error = HttpErrorResponse) => {
+    //     console.log(error);
+    //   },
+    //   () => { }
+    // )
 
     this.spelerService.retrieveById(this.spelerId).subscribe(
       (speler: Speler) => {
@@ -50,29 +51,38 @@ export class ResultaatComponent implements OnInit {
       (error = HttpErrorResponse) => {
         console.log(error);
       },
-      () => { }
+      () => {
+        for (var i = 0; i < this.inzettenArray.length; i++) {
+          this.clicked[i] = false;
+        }
+      }
     )
   }
-
-  UpdatePunten(inzet, index){
+  ResultaatClick(inzet, index) {
     this.resultaat = inzet.inzetTeLaat == inzet.game.trein.teLaat;
-    if(this.resultaat){
+    if (this.resultaat) {
+      if (!this.clicked[index]) {
+        this.UpdatePunten(inzet, index)
+        this.clicked[index] = true;
+      } else{}
+    }
+    else { }
+  }
+
+  UpdatePunten(inzet, index) {
     this.spelerService.updatePunten(this.speler.id, this.inzettenArray[(index)].teWinnenBedrag).subscribe(
       (speler: Speler) => this.speler = speler,
       (fout: HttpErrorResponse) =>
         alert("Er is een fout opgetreden: " +
-        fout.error.error.status + " " + fout.error.error + "\n" + 
-        "\nMessage:\n" + fout.error.message
+          fout.error.error.status + " " + fout.error.error + "\n" +
+          "\nMessage:\n" + fout.error.message
         ),
-        () => {
-          //this.router.navigate(['redirect', 'resultaat'])
-        }
-    )}
-    else{
-
-    }
-    console.log(JSON.stringify(this.speler.totaalPunten));
-}
+      () => {
+        //this.router.navigate(['redirect', 'resultaat'])
+        console.log(JSON.stringify(this.speler.totaalPunten));
+      }
+    )
+  }
 
   getInzetten() {
     return this.inzetten;

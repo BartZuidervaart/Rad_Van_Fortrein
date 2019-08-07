@@ -22,7 +22,8 @@ import { TreinenelementComponent } from './treinen/treinenelement/treinenelement
 import { ResultaatElementComponent } from './resultaat/resultaat-element/resultaat-element.component';
 import { InzetService } from './services/inzet.service';
 import { InzettenComponent } from './inzetten/inzetten.component';
-import { SpelersComponent } from './spelers/spelers.component'
+import { SpelersComponent } from './spelers/spelers.component';
+import { RedirectComponent } from './redirect/redirect.component'
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SpelersComponent } from './spelers/spelers.component'
     ResultaatElementComponent,
     InzettenComponent,
     SpelersComponent,
+    RedirectComponent,
   ],
   imports: [
     BrowserModule,
