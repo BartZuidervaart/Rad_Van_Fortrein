@@ -4,6 +4,7 @@ import { InzetService } from '../services/inzet.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SpelerService } from '../services/speler.service';
 import { Speler } from '../domain/Speler/speler';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-resultaat',
@@ -18,11 +19,11 @@ export class ResultaatComponent implements OnInit {
   spelerId = 3;
   inzettenArray: Inzet[];
   totaalPunten: number;
-  indexTijd : number = 0;
 
   constructor(
     private inzetService: InzetService,
     private spelerService: SpelerService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -52,13 +53,24 @@ export class ResultaatComponent implements OnInit {
     )
   }
 
+  UpdatePunten(index){
+    this.spelerService.updatePunten(this.speler.id, this.inzettenArray[(index)].teWinnenBedrag).subscribe(
+      (speler: Speler) => this.speler = speler,
+      (fout: HttpErrorResponse) =>
+        alert("Er is een fout opgetreden: " +
+        fout.error.error.status + " " + fout.error.error + "\n" + 
+        "\nMessage:\n" + fout.error.message
+        ),
+        () => {
+          //this.router.navigate(['redirect', 'resultaat'])
+        }
+    )
+    console.log(JSON.stringify(this.speler.totaalPunten));
+}
+
   getInzetten() {
     return this.inzetten;
   }
-
-  // getSpelers(){
-  //   return this.spelers;
-  // }
 
   getSpeler() {
     return this.speler;

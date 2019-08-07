@@ -19,8 +19,11 @@ export class SpelerService {
   }
 
   public retrieveById(id: number): Observable<Speler> {
-    return this.http.get<Speler>(`${environment.rvftUrl}/spelers/${id}`)
+    return this.http.get<Speler>(`${environment.rvftUrl}/spelers/${id}`) 
+  }
 
-    
+  public updatePunten(id: number, punten: number): Observable<Speler> {
+    return this.http.put<Speler>(`${environment.rvftUrl}/spelers/${id}/${punten}`,
+    id, this.httpOptions) 
   }
 }
