@@ -18,7 +18,8 @@ export class ResultaatComponent implements OnInit {
   speler: Speler;
   spelerId = 3;
   inzettenArray: Inzet[];
-  totaalPunten: number;
+  totaalPunten: number; 
+  resultaat: boolean;
 
   constructor(
     private inzetService: InzetService,
@@ -43,7 +44,7 @@ export class ResultaatComponent implements OnInit {
         this.inzettenArray = speler.inzetten;
         console.log(JSON.stringify(this.speler.inzetten));
         this.totaalPunten = speler.totaalPunten;
-        
+        console.log(JSON.stringify(this.speler.totaalPunten));
       },
 
       (error = HttpErrorResponse) => {
@@ -53,7 +54,9 @@ export class ResultaatComponent implements OnInit {
     )
   }
 
-  UpdatePunten(index){
+  UpdatePunten(inzet, index){
+    this.resultaat = inzet.inzetTeLaat == inzet.game.trein.teLaat;
+    if(this.resultaat){
     this.spelerService.updatePunten(this.speler.id, this.inzettenArray[(index)].teWinnenBedrag).subscribe(
       (speler: Speler) => this.speler = speler,
       (fout: HttpErrorResponse) =>
@@ -64,7 +67,10 @@ export class ResultaatComponent implements OnInit {
         () => {
           //this.router.navigate(['redirect', 'resultaat'])
         }
-    )
+    )}
+    else{
+
+    }
     console.log(JSON.stringify(this.speler.totaalPunten));
 }
 
