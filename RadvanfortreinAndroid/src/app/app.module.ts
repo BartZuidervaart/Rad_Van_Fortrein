@@ -23,7 +23,6 @@ import { ResultaatElementComponent } from './resultaat/resultaat-element/resulta
 import { InzetService } from './services/inzet.service';
 import { InzettenComponent } from './inzetten/inzetten.component';
 import { SpelersComponent } from './spelers/spelers.component';
-import { RedirectComponent } from './redirect/redirect.component'
 
 @NgModule({
   declarations: [
@@ -39,7 +38,6 @@ import { RedirectComponent } from './redirect/redirect.component'
     ResultaatElementComponent,
     InzettenComponent,
     SpelersComponent,
-    RedirectComponent,
   ],
   imports: [
     BrowserModule,
