@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Inzet } from '../domain/Inzet/inzet';
 import { InzetService } from '../services/inzet.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -12,8 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./resultaat.component.css']
 })
 export class ResultaatComponent implements OnInit {
-  @Output () puntenChange = new EventEmitter<string>();
-
   inzetten: Inzet[];
   spelers: Speler[];
   speler: Speler;
@@ -53,9 +51,6 @@ export class ResultaatComponent implements OnInit {
         console.log(error);
       },
       () => {
-        for (var i = 0; i < this.inzettenArray.length; i++) {
-          this.clicked[i] = false;
-        }
       }
     )
   }
@@ -90,15 +85,6 @@ export class ResultaatComponent implements OnInit {
   reloadPunten(){
     this.totaalPunten = this.speler.totaalPunten;
   }
-
-  reload(){
-    var container = document.getElementById("puntenDiv");
-    var content = container.innerHTML;
-    container.innerHTML= content; 
-    
-   //this line is to watch the result in console , you can remove it later	
-    console.log("Refreshed"); 
-}
 
   getInzetten() {
     return this.inzetten;

@@ -28,11 +28,11 @@ export class InzetComponent implements OnInit {
   selectedTrein: string;
   keuzeTeLaat: string;
 
-  treinen:  Trein[] = [
-    {naam: 'ns 2273', beginStation: 'Vlissingen', station: 'Amsterdam', tijd: '12:07'},
-    {naam: 'ns 4066', beginStation: 'Rotterdam Centraal', station: 'Amsterdam', tijd: '12:13'},
-    {naam: 'ns 14668', beginStation: 'Zwolle', station: 'Amsterdam', tijd: '12:19'}
-  ];
+  // treinen:  Trein[] = [
+  //   {naam: 'ns 2273', beginStation: 'Vlissingen', station: 'Amsterdam', tijd: '12:07'},
+  //   {naam: 'ns 4066', beginStation: 'Rotterdam Centraal', station: 'Amsterdam', tijd: '12:13'},
+  //   {naam: 'ns 14668', beginStation: 'Zwolle', station: 'Amsterdam', tijd: '12:19'}
+  // ];
 
   keuzes: Keuze[] = [
     {value: 'op tijd is', viewValue: 'Op tijd'},
