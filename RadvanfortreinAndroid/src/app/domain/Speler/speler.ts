@@ -3,15 +3,15 @@ import { Inzet } from '../Inzet/inzet';
 export class Speler {
 
     constructor(
-        private _id: number,
-        private _naam: string,
-        public _totaalPunten: number,
+        private id: number,
+        private naam: string,
+        private totaalPunten: number,
         // private _inzetten: Array<Inzet>,
-        private _inzetten: Inzet[],
+        private inzetten: string[],
     ){};
 
-    get id() : number { return this._id}
-    get naam() : string { return this._naam}
-    get totaalPunten() : number { return this._totaalPunten}
-    get inzetten() { return this._inzetten}
+    get getId() : number { return this.id}
+    get getNaam() : string { return this.naam}
+    get getTotaalPunten() : number { return this.totaalPunten}
+    get getInzetten() { return this.inzetten}
 }
