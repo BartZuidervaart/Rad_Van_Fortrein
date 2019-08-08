@@ -4,12 +4,12 @@ import { Game } from '../Game/game';
 
 export class Inzet {
     constructor(
-        private id: number, 
-        private speler: number, 
-        private game: number, 
-        private inzetBedrag: number, 
-        private inzetTeLaat: boolean,
-        private teWinnenBedrag : number) {
+        public id: number, 
+        public speler: number, 
+        public game: number, 
+        public inzetBedrag: number, 
+        public inzetTeLaat: boolean,
+        public teWinnenBedrag : number) {
     };
 
     get getId () : number {return this.id}

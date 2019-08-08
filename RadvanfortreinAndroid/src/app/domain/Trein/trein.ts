@@ -1,10 +1,10 @@
 export class Trein {
 
     constructor(
-        private naam: string,
-        private origin: string,
-        private geplandeAankomsten: string[],
-        private werkelijkeAankomsten: string[],
+        public naam: string,
+        public origin: string,
+        public geplandeAankomsten: string[],
+        public werkelijkeAankomsten: string[],
     ) {}
 
     get getNaam() : string {

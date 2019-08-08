@@ -3,11 +3,11 @@ import { Inzet } from '../Inzet/inzet';
 export class Speler {
 
     constructor(
-        private id: number,
-        private naam: string,
-        private totaalPunten: number,
-        // private _inzetten: Array<Inzet>,
-        private inzetten: number[],
+        public id: number,
+        public naam: string,
+        public totaalPunten: number,
+        // public _inzetten: Array<Inzet>,
+        public inzetten: number[],
     ){};
 
     get getId() : number { return this.id}

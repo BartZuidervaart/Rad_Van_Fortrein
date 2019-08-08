@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
-import { TabelComponent } from './tabel/tabel.component';
 import { Trein } from '../domain/Trein/trein';
 import { InzetService } from '../services/inzet.service';
 import { GameService } from '../services/game.service';
@@ -11,13 +10,7 @@ import { Game } from '../domain/Game/game';
 import { Speler } from '../domain/Speler/speler';
 import { Inzet } from '../domain/Inzet/inzet';
 import { Router } from '@angular/router';
-
-// export interface Trein {
-//   naam: string;
-//   beginStation: string;
-//   station: string;
-//   tijd: string;
-// }
+import { HttpErrorResponse } from '@angular/common/http';
 
 export interface Keuze {
   value: boolean;
@@ -29,6 +22,7 @@ export interface Keuze {
   templateUrl: './inzet.component.html',
   styleUrls: ['./inzet.component.css']
 })
+
 export class InzetComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
@@ -38,17 +32,12 @@ export class InzetComponent implements OnInit {
   selectedTrein: Trein;
   keuzeTeLaat: boolean;
   treinen : string[];
+  treinNaam: string;
   station : Station;
   game : Game;
   speler : Speler;
   inzet : Inzet;
   teWinnenPunten: number = 0;
-
-  // treinen:  Trein[] = [
-  //   {naam: 'ns 2273', beginStation: 'Vlissingen', station: 'Amsterdam', tijd: '12:07'},
-  //   {naam: 'ns 4066', beginStation: 'Rotterdam Centraal', station: 'Amsterdam', tijd: '12:13'},
-  //   {naam: 'ns 14668', beginStation: 'Zwolle', station: 'Amsterdam', tijd: '12:19'}
-  // ];
 
   keuzes: Keuze[] = [
     {value: false, viewValue: 'Op tijd'},
@@ -80,49 +69,94 @@ export class InzetComponent implements OnInit {
     console.log(this.selectedTrein, this.keuzeTeLaat, this.aantalPunten);
     //Hier moet de inzet worden verstuurd!
     //En je gaat weer terug naar de home pagina
-    this.treinen.push(this.selectedTrein.getNaam);
+    this.treinen.push(this.selectedTrein.naam);
     this.station = new Station("ASD", "Amsterdam Centraal", this.treinen);
     this.game = new Game(0, this.selectedTrein.getNaam, this.station.getCode, new Array<number>(), 0);
     this.speler = new Speler(0, "Barry", 500, new Array<number>());
     this.inzet = new Inzet(0, this.speler.getId, this.game.getId, this.aantalPunten, this.keuzeTeLaat, this.teWinnenPunten );
+    this.createStation();
+  }
 
+  createStation(){
     this.stationService.create(this.station).subscribe(
-      data => {
-        console.log("POST station request is succesful ", data);
-      },
-      error => {
-        console.log("Error", error);
-      }
-    )
-    this.spelerService.create(this.speler).subscribe(
-      data => {
-        console.log("POST speler request is succesful ", data);
-      },
-      error => {
-        console.log("Error", error);
-      }
-    )
-    this.gameService.create(this.game).subscribe(
-      data => {
-        console.log("POST game request is succesful ", data);
-      },
-      error => {
-        console.log("Error", error);
-      }  
-    )
-
-    this.inzetService.create(this.inzet).subscribe(
-      data => {
-        console.log("POST inzet request is succesful ", data);
+      (station : Station) => {
+        this.station = station
+        console.log("POST station request is succesful ", station);
       },
       error => {
         console.log("Error", error);
       },
       () => {
-        this.gaNaarHome();
+        //this.createSpeler();
+        this.createInzet();
       }
     )
+  }
 
+  createSpeler(){
+    this.spelerService.create(this.speler).subscribe(
+      (speler: Speler) => {
+        this.speler = speler;
+        console.log("POST speler request is succesful ", speler);
+      },
+      error => {
+        console.log("Error", error);
+      },
+      () => {
+        this.createGame();
+      }
+    )
+  }
+
+    createGame(){
+    this.gameService.create(this.game).subscribe(
+      (game :Game) => {
+        this.game = game;
+        console.log("POST game request is succesful ", game);
+      },
+      error => {
+        console.log("Error", error);
+      },
+      () => {
+        //this.createInzet();
+        this.updateInzet();
+      }  
+    )
+  }
+
+  createInzet(){
+    this.inzetService.create(this.inzet).subscribe(
+      (inzet : Inzet) => {
+        this.inzet = inzet;
+        console.log("POST inzet request is succesful ", inzet);
+      },
+      error => {
+        console.log("Error", error);
+      },
+      () => {
+        this.game.inzetten.push(this.inzet.id);
+        this.speler.inzetten.push(this.inzet.id);
+        this.createSpeler();
+        //this.gaNaarHome();
+      }
+    )
+  }
+  
+  updateInzet(){
+    this.inzet.speler = this.speler.id;
+    this.inzet.game = this.game.id;
+    this.inzetService.update(this.inzet).subscribe(
+      (inzet: Inzet) => this.inzet = inzet,
+      (fout: HttpErrorResponse) =>
+        alert("Er is een fout opgetreden: " +
+          fout.error.error.status + " " + fout.error.error + "\n" +
+          "\nMessage:\n" + fout.error.message
+        ),
+        () => {
+
+        }
+
+    )
   }
 
   onSelectionChanged(trein:Trein): void {
