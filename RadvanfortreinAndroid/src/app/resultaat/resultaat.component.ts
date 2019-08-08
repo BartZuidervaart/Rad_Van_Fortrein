@@ -73,7 +73,7 @@ export class ResultaatComponent implements OnInit {
   }
 
   UpdatePunten(inzet, index) {
-    this.spelerService.updatePunten(this.speler.id, this.inzettenArray[(index)].teWinnenBedrag).subscribe(
+    this.spelerService.updatePunten(this.speler.getId, this.inzettenArray[(index)].getTeWinnenBedrag).subscribe(
       (speler: Speler) => this.speler = speler,
       (fout: HttpErrorResponse) =>
         alert("Er is een fout opgetreden: " +
@@ -82,7 +82,7 @@ export class ResultaatComponent implements OnInit {
         ),
       () => {
         //this.router.navigate(['redirect', 'resultaat'])
-        console.log(JSON.stringify(this.speler.totaalPunten));
+        console.log(JSON.stringify(this.speler.getTotaalPunten));
         this.reloadPunten();
       }
     )
@@ -90,7 +90,7 @@ export class ResultaatComponent implements OnInit {
   }
 
   reloadPunten(){
-    this.totaalPunten = this.speler.totaalPunten;
+    this.totaalPunten = this.speler.getTotaalPunten;
   }
 
   getInzetten() {

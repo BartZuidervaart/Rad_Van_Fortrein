@@ -42,6 +42,7 @@ export class InzetComponent implements OnInit {
   game : Game;
   speler : Speler;
   inzet : Inzet;
+  teWinnenPunten: number = 0;
 
   // treinen:  Trein[] = [
   //   {naam: 'ns 2273', beginStation: 'Vlissingen', station: 'Amsterdam', tijd: '12:07'},
@@ -83,7 +84,7 @@ export class InzetComponent implements OnInit {
     this.station = new Station("ASD", "Amsterdam Centraal", this.treinen);
     this.game = new Game(0, this.selectedTrein.getNaam, this.station.getCode, new Array<number>(), 0);
     this.speler = new Speler(0, "Barry", 500, new Array<number>());
-    this.inzet = new Inzet(0, this.speler.getId, this.game.getId, this.aantalPunten, this.keuzeTeLaat);
+    this.inzet = new Inzet(0, this.speler.getId, this.game.getId, this.aantalPunten, this.keuzeTeLaat, this.teWinnenPunten );
 
     this.stationService.create(this.station).subscribe(
       data => {
