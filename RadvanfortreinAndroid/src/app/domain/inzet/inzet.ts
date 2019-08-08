@@ -8,7 +8,8 @@ export class Inzet {
         private speler: number, 
         private game: number, 
         private inzetBedrag: number, 
-        private inzetTeLaat: boolean) {
+        private inzetTeLaat: boolean,
+        private teWinnenBedrag : number) {
     };
 
     get getId () : number {return this.id}
@@ -16,4 +17,5 @@ export class Inzet {
     get getGame() : number {return this.game}
     get getInzetBedrag() : number {return this.inzetBedrag}
     get getInzetTeLaat() : boolean{return this.inzetTeLaat}
+    get teWinnenBedrag() : number{return this.teWinnenBedrag}
 }

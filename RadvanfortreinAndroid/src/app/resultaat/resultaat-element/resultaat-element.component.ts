@@ -9,7 +9,9 @@ import { Speler } from '../../domain/Speler/speler';
 })
 export class ResultaatElementComponent implements OnInit {
 @Input("inzet") inzet: Inzet;
-@Input("speler") speler: Speler;
+//@Input("speler") speler: Speler;
+
+teWinnenPunten : number;
  
 constructor(
  

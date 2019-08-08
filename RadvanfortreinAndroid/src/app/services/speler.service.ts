@@ -25,7 +25,7 @@ export class SpelerService {
   public retrieveAll(): Observable<Speler[]> {
     return this.http.get<Speler[]>(`${environment.radVanFortreinURL}/spelers`)
   }
-
+  
   public retrieveById(id:number): Observable<Speler> {
     return this.http.get<Speler>(`${environment.radVanFortreinURL}/spelers/${id}`)
   }
@@ -37,5 +37,10 @@ export class SpelerService {
 
   public delete(id:number): Observable<void> {
     return this.http.delete<void>(`${environment.radVanFortreinURL}/spelers/${id}`);
+  }
+
+  public updatePunten(id: number, punten: number): Observable<Speler> {
+    return this.http.put<Speler>(`${environment.rvftUrl}/spelers/${id}/${punten}`,
+    id, this.httpOptions) 
   }
 }

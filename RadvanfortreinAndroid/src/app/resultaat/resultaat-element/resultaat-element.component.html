@@ -1,21 +1,18 @@
-<mat-expansion-panel>
+<mat-expansion-panel >
     <mat-expansion-panel-header>
-        <mat-panel-title>
-            <!-- {{trein.origin}} naar Amsterdam van {{trein.geplandeAankomsten[0]}} -->
-        </mat-panel-title>
+            <mat-panel-title>
+                    {{inzet.game.trein.origin}} naar Amsterdam 
+                    van {{inzet.game.trein.geplandeAankomsten[0].substring(11,16)}}
+            </mat-panel-title>
     </mat-expansion-panel-header>
-    <pre>
-        <!-- {{inzet.id}} -->
-{{speler.naam}}
-{{speler.totaalPunten}}
-{{inzet.id}}
-{{inzet.game.id}}
-        <!-- {{speler.inzetten.id}} -->
-        <!-- {{speler.inzetten.id[7]}} -->
-
-        <!-- Deze trein is aangekomen op: {{trein.werkelijkeAankomsten[0]}}. <br>
-        De trein {{isOpTijd ? ' is op tijd aangekomen.' : 'heeft vertraging op gelopen.'}} <br>
-        Jij hebt {{resultaat ? 'goed' : 'fout'}} gegokt! <br>
-        {{resultaat ? 'Je verdient hiermee ' : 'Je hebt helaas niks gewonnen.'}} {{teWinnenPunten}} punten. -->
-        </pre>
+    <!-- {{speler.naam}}
+    {{speler.totaalPunten}}
+    {{inzet.id}}
+    {{inzet.game.id}}
+    {{inzet.game.trein.origin}} -->
+    De trein is aangekomen op: {{inzet.game.trein.werkelijkeAankomsten[0].substring(11,16)}}. <br>
+    De trein {{inzet.game.trein.teLaat ? ' heeft vertraging op gelopen.' : ' is op tijd aangekomen.'}} <br>
+    Jij hebt {{inzet.inzetTeLaat == inzet.game.trein.teLaat ? 'goed' : 'fout'}} gegokt! <br>
+    {{inzet.inzetTeLaat == inzet.game.trein.teLaat ? 'Je verdient hiermee ' : 'Je loopt hierdoor '}} {{inzet.inzetBedrag * 2}} 
+    {{inzet.inzetTeLaat == inzet.game.trein.teLaat ? 'punten.' : 'punten mis.'}}
 </mat-expansion-panel>
