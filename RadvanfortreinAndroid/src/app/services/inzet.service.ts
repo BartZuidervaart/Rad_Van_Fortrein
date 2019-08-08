@@ -27,6 +27,10 @@ export class InzetService {
     return this.http.get<Inzet[]>(`${environment.radVanFortreinURL}/inzetten`)
   }
 
+  public retrieveAllBySpelerId(id:number): Observable<Inzet[]> {
+    return this.http.get<Inzet[]>(`${environment.radVanFortreinURL}/inzetten/speler/${id}`)
+  }
+
   public retrieveById(id:number): Observable<Inzet> {
     return this.http.get<Inzet>(`${environment.radVanFortreinURL}/inzetten/${id}`)
   }

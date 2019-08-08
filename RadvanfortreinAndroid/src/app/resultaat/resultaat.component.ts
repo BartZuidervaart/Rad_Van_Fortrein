@@ -15,7 +15,7 @@ export class ResultaatComponent implements OnInit {
   inzetten: Inzet[];
   spelers: Speler[];
   speler: Speler;
-  spelerId = 3;
+  spelerId = 0;
   inzettenArray: Inzet[];
   totaalPunten: number;
   spelerInzetten : number[];
@@ -29,15 +29,15 @@ export class ResultaatComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.inzetService.retrieveAll().subscribe(
-    //   (inzetten: Inzet[]) => {
-    //     this.inzetten = inzetten
-    //   },
-    //   (error = HttpErrorResponse) => {
-    //     console.log(error);
-    //   },
-    //   () => { }
-    // )
+    this.inzetService.retrieveAllBySpelerId(this.spelerId).subscribe(
+      (inzetten: Inzet[]) => {
+        this.inzetten = inzetten
+      },
+      (error = HttpErrorResponse) => {
+        console.log(error);
+      },
+      () => { }
+    )
 
     this.spelerService.retrieveById(this.spelerId).subscribe(
       (speler: Speler) => {

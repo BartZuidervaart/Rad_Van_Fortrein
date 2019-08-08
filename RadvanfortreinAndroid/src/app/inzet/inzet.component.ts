@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
-import { TabelComponent } from './tabel/tabel.component';
 import { Trein } from '../domain/Trein/trein';
 import { InzetService } from '../services/inzet.service';
 import { GameService } from '../services/game.service';
@@ -12,13 +11,6 @@ import { Speler } from '../domain/Speler/speler';
 import { Inzet } from '../domain/Inzet/inzet';
 import { Router } from '@angular/router';
 
-// export interface Trein {
-//   naam: string;
-//   beginStation: string;
-//   station: string;
-//   tijd: string;
-// }
-
 export interface Keuze {
   value: boolean;
   viewValue: string;
@@ -29,6 +21,7 @@ export interface Keuze {
   templateUrl: './inzet.component.html',
   styleUrls: ['./inzet.component.css']
 })
+
 export class InzetComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
@@ -38,17 +31,12 @@ export class InzetComponent implements OnInit {
   selectedTrein: Trein;
   keuzeTeLaat: boolean;
   treinen : string[];
+  treinNaam: string;
   station : Station;
   game : Game;
   speler : Speler;
   inzet : Inzet;
   teWinnenPunten: number = 0;
-
-  // treinen:  Trein[] = [
-  //   {naam: 'ns 2273', beginStation: 'Vlissingen', station: 'Amsterdam', tijd: '12:07'},
-  //   {naam: 'ns 4066', beginStation: 'Rotterdam Centraal', station: 'Amsterdam', tijd: '12:13'},
-  //   {naam: 'ns 14668', beginStation: 'Zwolle', station: 'Amsterdam', tijd: '12:19'}
-  // ];
 
   keuzes: Keuze[] = [
     {value: false, viewValue: 'Op tijd'},
