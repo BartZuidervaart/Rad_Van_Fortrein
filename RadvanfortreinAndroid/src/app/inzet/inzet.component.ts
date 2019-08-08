@@ -1,16 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import { TabelComponent } from './tabel/tabel.component';
+import { Trein } from '../domain/Trein/trein';
+import { InzetService } from '../services/inzet.service';
+import { GameService } from '../services/game.service';
+import { StationService } from '../services/station.service';
+import { SpelerService } from '../services/speler.service';
+import { Station } from '../domain/Station/station';
+import { Game } from '../domain/Game/game';
+import { Speler } from '../domain/Speler/speler';
+import { Inzet } from '../domain/Inzet/inzet';
+import { Router } from '@angular/router';
 
-export interface Trein {
-  naam: string;
-  beginStation: string;
-  station: string;
-  tijd: string;
-}
+// export interface Trein {
+//   naam: string;
+//   beginStation: string;
+//   station: string;
+//   tijd: string;
+// }
 
 export interface Keuze {
-  value: string;
+  value: boolean;
   viewValue: string;
 }
 
@@ -25,8 +35,13 @@ export class InzetComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   aantalPunten = 0;
-  selectedTrein: string;
-  keuzeTeLaat: string;
+  selectedTrein: Trein;
+  keuzeTeLaat: boolean;
+  treinen : string[];
+  station : Station;
+  game : Game;
+  speler : Speler;
+  inzet : Inzet;
 
   // treinen:  Trein[] = [
   //   {naam: 'ns 2273', beginStation: 'Vlissingen', station: 'Amsterdam', tijd: '12:07'},
@@ -35,11 +50,17 @@ export class InzetComponent implements OnInit {
   // ];
 
   keuzes: Keuze[] = [
-    {value: 'op tijd is', viewValue: 'Op tijd'},
-    {value: 'te laat komt', viewValue: 'Te laat'}
+    {value: false, viewValue: 'Op tijd'},
+    {value: true, viewValue: 'Te laat'}
   ];
 
-  constructor() { }
+  constructor(
+    private stationService: StationService,
+    private gameService: GameService,
+    private inzetService: InzetService,
+    private spelerService: SpelerService,
+    private router : Router
+  ) { }
 
   ngOnInit() {
     this.firstFormGroup = new FormGroup({
@@ -51,12 +72,65 @@ export class InzetComponent implements OnInit {
     this.thirdFormGroup = new FormGroup({
       aantalPunten: new FormControl()
     });
+    this.treinen = [];
   }
 
   submit(){
     console.log(this.selectedTrein, this.keuzeTeLaat, this.aantalPunten);
     //Hier moet de inzet worden verstuurd!
     //En je gaat weer terug naar de home pagina
+    this.treinen.push(this.selectedTrein.getNaam);
+    this.station = new Station("ASD", "Amsterdam Centraal", this.treinen);
+    this.game = new Game(0, this.selectedTrein.getNaam, this.station.getCode, new Array<number>(), 0);
+    this.speler = new Speler(0, "Barry", 500, new Array<number>());
+    this.inzet = new Inzet(0, this.speler.getId, this.game.getId, this.aantalPunten, this.keuzeTeLaat);
+
+    this.stationService.create(this.station).subscribe(
+      data => {
+        console.log("POST station request is succesful ", data);
+      },
+      error => {
+        console.log("Error", error);
+      }
+    )
+    this.spelerService.create(this.speler).subscribe(
+      data => {
+        console.log("POST speler request is succesful ", data);
+      },
+      error => {
+        console.log("Error", error);
+      }
+    )
+    this.gameService.create(this.game).subscribe(
+      data => {
+        console.log("POST game request is succesful ", data);
+      },
+      error => {
+        console.log("Error", error);
+      }  
+    )
+
+    this.inzetService.create(this.inzet).subscribe(
+      data => {
+        console.log("POST inzet request is succesful ", data);
+      },
+      error => {
+        console.log("Error", error);
+      },
+      () => {
+        this.gaNaarHome();
+      }
+    )
+
+  }
+
+  onSelectionChanged(trein:Trein): void {
+    this.selectedTrein = trein;
+    console.log(this.selectedTrein);
+  }
+
+  gaNaarHome() : void {
+    this.router.navigate(['home']);
   }
 
 }

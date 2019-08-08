@@ -24,7 +24,7 @@ export class SpelersComponent implements OnInit {
         this.spelerService.retrieveById(data.id).subscribe(
           (speler: Speler) => {
             this.speler = speler;
-            console.log(speler.naam)
+            console.log(speler.getNaam);
           },
           (fout: HttpErrorResponse) =>
             alert("Er is een fout opgetreden: " +

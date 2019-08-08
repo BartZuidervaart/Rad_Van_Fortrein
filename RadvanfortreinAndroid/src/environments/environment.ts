@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   rvftUrl: 'http://localhost:8080/api',
-  radVanFortreinURL: 'http://localhost:8080/'
+  radVanFortreinURL: 'http://localhost:8080/api'
 };
 
