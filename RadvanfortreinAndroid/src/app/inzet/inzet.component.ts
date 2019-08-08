@@ -82,9 +82,9 @@ export class InzetComponent implements OnInit {
     //En je gaat weer terug naar de home pagina
     this.treinen.push(this.selectedTrein.getNaam);
     this.station = new Station("ASD", "Amsterdam Centraal", this.treinen);
-    this.game = new Game(0, this.selectedTrein.getNaam, this.station.getCode, new Array<number>(), 0);
+    this.game = new Game(0, this.selectedTrein.getNaam, this.station.getCode, new Array<Inzet>(), 0);
     this.speler = new Speler(0, "Barry", 500, new Array<number>());
-    this.inzet = new Inzet(0, this.speler.getId, this.game.getId, this.aantalPunten, this.keuzeTeLaat, this.teWinnenPunten );
+    this.inzet = new Inzet(0, this.speler.getId, this.game, this.aantalPunten, this.keuzeTeLaat, this.teWinnenPunten );
 
     this.stationService.create(this.station).subscribe(
       data => {
@@ -92,37 +92,41 @@ export class InzetComponent implements OnInit {
       },
       error => {
         console.log("Error", error);
-      }
-    )
-    this.spelerService.create(this.speler).subscribe(
-      data => {
-        console.log("POST speler request is succesful ", data);
-      },
-      error => {
-        console.log("Error", error);
-      }
-    )
-    this.gameService.create(this.game).subscribe(
-      data => {
-        console.log("POST game request is succesful ", data);
-      },
-      error => {
-        console.log("Error", error);
-      }  
-    )
-
-    this.inzetService.create(this.inzet).subscribe(
-      data => {
-        console.log("POST inzet request is succesful ", data);
-      },
-      error => {
-        console.log("Error", error);
       },
       () => {
-        this.gaNaarHome();
+        this.spelerService.create(this.speler).subscribe(
+          data => {
+            console.log("POST speler request is succesful ", data);
+          },
+          error => {
+            console.log("Error", error);
+          },
+          () => {
+            this.gameService.create(this.game).subscribe(
+              data => {
+                console.log("POST game request is succesful ", data);
+              },
+              error => {
+                console.log("Error", error);
+              },
+              () => {
+                this.inzetService.create(this.inzet).subscribe(
+                  data => {
+                    console.log("POST inzet request is succesful ", data);
+                  },
+                  error => {
+                    console.log("Error", error);
+                  },
+                  () => {
+                    this.gaNaarHome();
+                  }
+                )
+              }
+            )
+          }
+        )
       }
     )
-
   }
 
   onSelectionChanged(trein:Trein): void {
