@@ -36,7 +36,7 @@ export class InzetService {
   }
 
   public update(inzet:Inzet): Observable<Inzet> {
-    return this.http.put<Inzet>(`${environment.radVanFortreinURL}/inzetten/${inzet.getId}`,
+    return this.http.put<Inzet>(`${environment.radVanFortreinURL}/inzetten/${inzet.id}`,
         inzet, this.httpOptions)
   }
 

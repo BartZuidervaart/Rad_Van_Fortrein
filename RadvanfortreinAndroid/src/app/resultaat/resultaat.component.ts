@@ -15,7 +15,7 @@ export class ResultaatComponent implements OnInit {
   inzetten: Inzet[];
   spelers: Speler[];
   speler: Speler;
-  spelerId = 0;
+  spelerId = 87;
   inzettenArray: Inzet[];
   totaalPunten: number;
   spelerInzetten : number[];
