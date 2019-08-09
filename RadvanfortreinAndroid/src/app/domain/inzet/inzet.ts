@@ -12,10 +12,10 @@ export class Inzet {
         public teWinnenBedrag : number) {
     };
 
-    get getId () : number {return this.id}
-    get getSpeler() : Speler {return this.speler}
-    get getGame() : Game {return this.game}
-    get getInzetBedrag() : number {return this.inzetBedrag}
-    get getInzetTeLaat() : boolean{return this.inzetTeLaat}
-    get getTeWinnenBedrag() : number{return this.teWinnenBedrag}
+    // get getId () : number {return this.id}
+    // get getSpeler() : Speler {return this.speler}
+    // get getGame() : Game {return this.game}
+    // get getInzetBedrag() : number {return this.inzetBedrag}
+    // get getInzetTeLaat() : boolean{return this.inzetTeLaat}
+    // get getTeWinnenBedrag() : number{return this.teWinnenBedrag}
 }

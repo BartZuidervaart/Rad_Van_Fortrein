@@ -31,7 +31,7 @@ export class SpelerService {
   }
 
   public update(speler:Speler): Observable<Speler> {
-    return this.http.put<Speler>(`${environment.radVanFortreinURL}/spelers/${speler.getId}`,
+    return this.http.put<Speler>(`${environment.radVanFortreinURL}/spelers/${speler.id}`,
         speler, this.httpOptions)
   }
 
