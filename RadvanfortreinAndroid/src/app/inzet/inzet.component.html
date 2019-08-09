@@ -20,32 +20,32 @@
                 </mat-radio-button>
             </mat-radio-group>
 
-            <br>
-            <div>
-                <button mat-button matStepperPrevious>Terug</button>
-                <button mat-button matStepperNext>Volgende</button>
-            </div>
-        </form>
-    </mat-step>
-    <mat-step [stepControl]="thirdFormGroup">
-        <form [formGroup]="thirdFormGroup">
-            <ng-template matStepLabel>Hoe veel punten wil je inzetten?</ng-template>
-            <!-- De max value zou aanpasbaar moeten worden aan de hand van de max punten van de speler. -->
-            <br>
-            <mat-slider min="1" max="50" thumbLabel [(value)]="aantalPunten"></mat-slider>
-            <div>
-                <button mat-button matStepperPrevious>Terug</button>
-                <button mat-button matStepperNext>Volgende</button>
-            </div>
-        </form>
-    </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Klaar</ng-template>
-        <p>Je denkt dat de trein uit {{selectedTrein}} {{keuzeTeLaat}}. Daar zet je op in met {{aantalPunten}} punten. </p>
-        <p>Klik op de knop 'submit' om je inzet vast te leggen.</p><br>
-        <div>
-            <button mat-button matStepperPrevious>Terug</button>
-            <button mat-button (click)="submit()">Submit</button>
-        </div>
-    </mat-step>
+      <br>
+      <div>
+        <button mat-button matStepperPrevious>Terug</button>
+        <button mat-button matStepperNext>Volgende</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Hoe veel punten wil je inzetten?</ng-template>
+      <!-- De max value zou aanpasbaar moeten worden aan de hand van de max punten van de speler. -->
+      <br>
+      <mat-slider min="1" max="50" thumbLabel [(value)]="aantalPunten"></mat-slider>
+      <div>
+        <button mat-button matStepperPrevious>Terug</button>
+        <button mat-button matStepperNext>Volgende</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Klaar</ng-template>
+    <p>Je denkt dat de trein uit {{selectedTrein}} {{keuzeTeLaat ? ' vertraging heeft op gelopen.' : ' op tijd komt.'}} Daar zet je op in met {{aantalPunten}} punten. </p>
+    <p>Klik op de knop 'submit' om je inzet vast te leggen.</p><br>
+    <div>
+      <button mat-button matStepperPrevious>Terug</button>
+      <button mat-button (click)="submit()">Submit</button>
+    </div>
+  </mat-step>
 </mat-vertical-stepper>

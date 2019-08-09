@@ -4,11 +4,11 @@ import { Inzet } from '../Inzet/inzet';
 
 export class Game {
     constructor(
-        private id: number,
-        private trein: string,
-        private station: string,
-        private inzetten: Array<Inzet>,
-        private resultaat: number,
+        public id: number,
+        public trein: string,
+        public station: string,
+        public inzetten: number[],
+        public resultaat: number,
     ){
     };
 

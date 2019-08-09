@@ -1,9 +1,9 @@
 export class Station {
 
     constructor(
-        private code : string,
-        private naam : string,
-        private treinen : string[]
+        public code : string,
+        public naam : string,
+        public treinen : string[]
     ) {}
 
     get getCode() { return this.code }
