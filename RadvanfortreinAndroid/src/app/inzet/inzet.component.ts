@@ -72,8 +72,8 @@ export class InzetComponent implements OnInit {
     this.treinen.push(this.selectedTrein.naam);
     this.station = new Station("ASD", "Amsterdam Centraal", this.treinen);
     this.game = new Game(0, this.selectedTrein.getNaam, this.station.getCode, new Array<Inzet>(), 0);
-    this.speler = new Speler(0, "Barry", 500, new Array<number>());
-    this.inzet = new Inzet(0, this.speler.getId, this.game, this.aantalPunten, this.keuzeTeLaat, this.teWinnenPunten );
+    this.speler = new Speler(1, "Barry", 500, new Array<Inzet>());
+    this.inzet = new Inzet(0, this.speler, this.game, this.aantalPunten, this.keuzeTeLaat, this.teWinnenPunten );
     this.createStation();
   }
 
@@ -87,8 +87,8 @@ export class InzetComponent implements OnInit {
         console.log("Error", error);
       },
       () => {
-        //this.createSpeler();
-        this.createInzet();
+        this.createSpeler();
+        // this.createInzet();
       }
     )
   }
@@ -118,8 +118,10 @@ export class InzetComponent implements OnInit {
         console.log("Error", error);
       },
       () => {
-        //this.createInzet();
-        this.updateInzet();
+        this.game.inzetten.push(this.inzet);
+        this.speler.inzetten.push(this.inzet);
+        this.createInzet();
+        // this.updateInzet();
       }  
     )
   }
@@ -134,16 +136,16 @@ export class InzetComponent implements OnInit {
         console.log("Error", error);
       },
       () => {
-        this.game.inzetten.push(this.inzet);
-        this.speler.inzetten.push(this.inzet.id);
-        this.createSpeler();
+        // this.game.inzetten.push(this.inzet);
+        // this.speler.inzetten.push(this.inzet);
+        // this.createSpeler();
         //this.gaNaarHome();
       }
     )
   }
   
   updateInzet(){
-    this.inzet.speler = this.speler.id;
+    this.inzet.speler = this.speler;
     this.inzet.game = this.game;
     this.inzetService.update(this.inzet).subscribe(
       (inzet: Inzet) => this.inzet = inzet,

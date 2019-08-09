@@ -18,7 +18,7 @@ export class ResultaatComponent implements OnInit {
   spelerId = 87;
   inzettenArray: Inzet[];
   totaalPunten: number;
-  spelerInzetten : number[];
+  spelerInzetten : Inzet[];
   resultaat: boolean;
   clicked: boolean[] = [false];
 
@@ -29,29 +29,30 @@ export class ResultaatComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.inzetService.retrieveAllBySpelerId(this.spelerId).subscribe(
-      (inzetten: Inzet[]) => {
-        this.inzetten = inzetten
-      },
-      (error = HttpErrorResponse) => {
-        console.log(error);
-      },
-      () => { }
-    )
+    // this.inzetService.retrieveAllBySpelerId(this.spelerId).subscribe(
+    //   (inzetten: Inzet[]) => {
+    //     this.inzetten = inzetten
+    //   },
+    //   (error = HttpErrorResponse) => {
+    //     console.log(error);
+    //   },
+    //   () => { }
+    // )
 
     this.spelerService.retrieveById(this.spelerId).subscribe(
       (speler: Speler) => {
         this.speler = speler;
-        this.spelerInzetten = speler.getInzetten;
-        console.log(JSON.stringify(this.speler.getInzetten));
-        this.totaalPunten = speler.getTotaalPunten;
-        for (let inzetId of this.spelerInzetten) {
-          for (let inzet of this.inzetten) {
-            if (inzetId === inzet.getId) {
-              this.inzettenArray.push(inzet);
-            }
-          }
-        }
+        // this.spelerInzetten = speler.getInzetten;
+        // console.log(JSON.stringify(this.speler.getInzetten));
+        // this.totaalPunten = speler.getTotaalPunten;
+        // for (let inzetId of this.spelerInzetten) {
+        //   for (let inzet of this.inzetten) {
+        //     if (inzetId === inzet.getId) {
+        //       this.inzettenArray.push(inzet);
+        //     }
+        //   }
+        // }
+        this.inzettenArray = speler.inzetten;
       },
 
       (error = HttpErrorResponse) => {

@@ -5,7 +5,7 @@ import { Game } from '../Game/game';
 export class Inzet {
     constructor(
         public id: number, 
-        public speler: number, 
+        public speler: Speler, 
         public game: Game, 
         public inzetBedrag: number, 
         public inzetTeLaat: boolean,
@@ -13,7 +13,7 @@ export class Inzet {
     };
 
     get getId () : number {return this.id}
-    get getSpeler() : number {return this.speler}
+    get getSpeler() : Speler {return this.speler}
     get getGame() : Game {return this.game}
     get getInzetBedrag() : number {return this.inzetBedrag}
     get getInzetTeLaat() : boolean{return this.inzetTeLaat}
