@@ -24,7 +24,7 @@ export class InzettenComponent implements OnInit {
         this.inzetService.retrieveById(data.id).subscribe(
           (inzet: Inzet) => {
             this.inzet = inzet;
-            console.log(inzet.getInzetBedrag)
+            console.log(inzet.inzetBedrag)
           },
           (fout: HttpErrorResponse) =>
             alert("Er is een fout opgetreden: " +

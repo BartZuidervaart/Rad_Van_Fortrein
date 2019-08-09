@@ -29,6 +29,10 @@ export class StationService {
     return this.http.get<Station>(`${environment.radVanFortreinURL}/stations/${naam}`)
   }
 
+  public retrieveByCode(code:string): Observable<Station> {
+    return this.http.get<Station>(`${environment.radVanFortreinURL}/stations/${code}`)
+  }
+
   public update(station:Station): Observable<Station> {
     return this.http.put<Station>(`${environment.radVanFortreinURL}/stations/${station.getNaam}`,
         station, this.httpOptions)

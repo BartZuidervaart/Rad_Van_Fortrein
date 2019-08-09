@@ -15,7 +15,7 @@ export class ResultaatComponent implements OnInit {
   inzetten: Inzet[];
   spelers: Speler[];
   speler: Speler;
-  spelerId = 87;
+  spelerId = 0;
   inzettenArray: Inzet[];
   totaalPunten: number;
   spelerInzetten : Inzet[];
@@ -54,7 +54,6 @@ export class ResultaatComponent implements OnInit {
         // }
         this.inzettenArray = speler.inzetten;
       },
-
       (error = HttpErrorResponse) => {
         console.log(error);
       },
@@ -74,7 +73,7 @@ export class ResultaatComponent implements OnInit {
   }
 
   UpdatePunten(inzet, index) {
-    this.spelerService.updatePunten(this.speler.getId, this.inzettenArray[(index)].getTeWinnenBedrag).subscribe(
+    this.spelerService.updatePunten(this.speler.id, this.inzettenArray[(index)].teWinnenBedrag).subscribe(
       (speler: Speler) => this.speler = speler,
       (fout: HttpErrorResponse) =>
         alert("Er is een fout opgetreden: " +
