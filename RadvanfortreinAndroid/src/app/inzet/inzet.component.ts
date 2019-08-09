@@ -134,7 +134,7 @@ export class InzetComponent implements OnInit {
         console.log("Error", error);
       },
       () => {
-        this.game.inzetten.push(this.inzet.id);
+        this.game.inzetten.push(this.inzet);
         this.speler.inzetten.push(this.inzet.id);
         this.createSpeler();
         //this.gaNaarHome();
@@ -144,7 +144,7 @@ export class InzetComponent implements OnInit {
   
   updateInzet(){
     this.inzet.speler = this.speler.id;
-    this.inzet.game = this.game.id;
+    this.inzet.game = this.game;
     this.inzetService.update(this.inzet).subscribe(
       (inzet: Inzet) => this.inzet = inzet,
       (fout: HttpErrorResponse) =>

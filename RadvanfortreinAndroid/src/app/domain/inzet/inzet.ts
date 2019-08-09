@@ -6,7 +6,7 @@ export class Inzet {
     constructor(
         public id: number, 
         public speler: number, 
-        public game: number, 
+        public game: Game, 
         public inzetBedrag: number, 
         public inzetTeLaat: boolean,
         public teWinnenBedrag : number) {

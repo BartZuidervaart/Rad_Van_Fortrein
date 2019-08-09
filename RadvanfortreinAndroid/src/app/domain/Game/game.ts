@@ -7,7 +7,7 @@ export class Game {
         public id: number,
         public trein: string,
         public station: string,
-        public inzetten: number[],
+        public inzetten: Array<Inzet>,
         public resultaat: number,
     ){
     };
