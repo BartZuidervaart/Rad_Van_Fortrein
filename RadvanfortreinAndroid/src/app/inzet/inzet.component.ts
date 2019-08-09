@@ -86,22 +86,8 @@ export class InzetComponent implements OnInit {
         console.log("Error", error);
       },
       () => {
+        this.station.treinen = this.treinen;
         this.getSpeler();
-      }
-    )
-  }
-
-  updateStation() {
-    this.stationService.create(this.station).subscribe(
-      (station: Station) => {
-        this.station = station
-        console.log("PUT station request is succesful ", station);
-      },
-      error => {
-        console.log("Error", error);
-      },
-      () => {
-       this.updateSpeler();
       }
     )
   }
@@ -121,21 +107,6 @@ export class InzetComponent implements OnInit {
     )
   }
 
-  updateSpeler() {
-    this.spelerService.update(this.speler).subscribe(
-      (speler: Speler) => {
-        this.speler = speler;
-        console.log("PUT speler request is succesful ", speler);
-      },
-      error => {
-        console.log("Error", error);
-      },
-      () => {
-        this.updateGame();
-      }
-    )
-  }
-
   getGame() {
     this.gameService.retrieveById(999).subscribe(
       (game: Game) => {
@@ -147,8 +118,41 @@ export class InzetComponent implements OnInit {
       },
       () => {
         this.inzet = new Inzet(0, this.speler, this.game, this.aantalPunten, this.keuzeTeLaat, this.teWinnenPunten);
+        this.game.trein = this.selectedTrein.naam;
+        this.game.station = this.station.code;
         console.log(this.inzet);
         this.createInzet();
+      }
+    )
+  }
+
+  createInzet() {
+    this.inzetService.create(this.inzet).subscribe(
+      (inzet: Inzet) => {
+        this.inzet = inzet;
+        console.log("POST inzet request is succesful ", inzet);
+      },
+      error => {
+        console.log("Error", error);
+      },
+      () => {
+        
+        this.updateStation();
+      }
+    )
+  }
+
+  updateStation() {
+    this.stationService.create(this.station).subscribe(
+      (station: Station) => {
+        this.station = station
+        console.log("PUT station request is succesful ", station);
+      },
+      error => {
+        console.log("Error", error);
+      },
+      () => {
+        this.updateGame();
       }
     )
   }
@@ -165,41 +169,6 @@ export class InzetComponent implements OnInit {
       () => {
         this.gaNaarHome();
       }
-    )
-  }
-
-  createInzet() {
-    this.inzetService.create(this.inzet).subscribe(
-      (inzet: Inzet) => {
-        this.inzet = inzet;
-        console.log("POST inzet request is succesful ", inzet);
-      },
-      error => {
-        console.log("Error", error);
-      },
-      () => {
-        this.game.inzetten.push(this.inzet);
-        this.speler.inzetten.push(this.inzet);
-        this.updateStation();
-        //this.gaNaarHome();
-      }
-    )
-  }
-
-  updateInzet() {
-    this.inzet.speler = this.speler;
-    this.inzet.game = this.game;
-    this.inzetService.update(this.inzet).subscribe(
-      (inzet: Inzet) => this.inzet = inzet,
-      (fout: HttpErrorResponse) =>
-        alert("Er is een fout opgetreden: " +
-          fout.error.error.status + " " + fout.error.error + "\n" +
-          "\nMessage:\n" + fout.error.message
-        ),
-      () => {
-
-      }
-
     )
   }
 
