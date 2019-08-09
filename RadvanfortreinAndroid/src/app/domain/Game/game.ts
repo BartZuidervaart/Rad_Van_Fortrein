@@ -15,6 +15,6 @@ export class Game {
     get getId() : number {return this.id}
     get getTrein() : string {return this.trein}
     get getStation() : string {return this.station}
-    get getInzetten() : number[] {return this.inzetten}
+    get getInzetten() : Array<Inzet> {return this.inzetten}
     get getResultaat() : number {return this.resultaat}
 }

@@ -14,7 +14,7 @@ export class Inzet {
 
     get getId () : number {return this.id}
     get getSpeler() : number {return this.speler}
-    get getGame() : number {return this.game}
+    get getGame() : Game {return this.game}
     get getInzetBedrag() : number {return this.inzetBedrag}
     get getInzetTeLaat() : boolean{return this.inzetTeLaat}
     get getTeWinnenBedrag() : number{return this.teWinnenBedrag}

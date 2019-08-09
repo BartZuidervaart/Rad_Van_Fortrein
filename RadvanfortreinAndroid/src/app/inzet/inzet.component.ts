@@ -71,9 +71,9 @@ export class InzetComponent implements OnInit {
     //En je gaat weer terug naar de home pagina
     this.treinen.push(this.selectedTrein.naam);
     this.station = new Station("ASD", "Amsterdam Centraal", this.treinen);
-    this.game = new Game(0, this.selectedTrein.getNaam, this.station.getCode, new Array<number>(), 0);
+    this.game = new Game(0, this.selectedTrein.getNaam, this.station.getCode, new Array<Inzet>(), 0);
     this.speler = new Speler(0, "Barry", 500, new Array<number>());
-    this.inzet = new Inzet(0, this.speler.getId, this.game.getId, this.aantalPunten, this.keuzeTeLaat, this.teWinnenPunten );
+    this.inzet = new Inzet(0, this.speler.getId, this.game, this.aantalPunten, this.keuzeTeLaat, this.teWinnenPunten );
     this.createStation();
   }
 
