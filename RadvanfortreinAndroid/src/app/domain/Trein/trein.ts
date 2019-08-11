@@ -5,6 +5,7 @@ export class Trein {
         public origin: string,
         public geplandeAankomsten: string[],
         public werkelijkeAankomsten: string[],
+        public teLaat: boolean,
     ) {}
 
     get getNaam() : string {

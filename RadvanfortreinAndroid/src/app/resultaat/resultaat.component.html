@@ -1,11 +1,17 @@
 <p>Hier kun je het resultaat bekijken als er op een trein is gegokt</p>
 <mat-accordion>
         <div *ngFor="let inzet of inzettenArray; index as i">
-                <app-resultaat-element 
-                [inzet]='inzet' 
-                (click)='ResultaatClick(inzet, i)' 
-                >
-        </app-resultaat-element>
+                <div *ngIf="inzet.game.resultaat == 1 || inzet.game.resultaat == 2; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>
+                        <app-resultaat-element
+                        [inzet]='inzet' ></app-resultaat-element>
+                </ng-template>
+                <ng-template #elseBlock>
+                        <app-resultaat-element-timer
+                        [inzet]='inzet'></app-resultaat-element-timer>
+                </ng-template>
+                
+       
         </div>
 </mat-accordion>
 <br>
