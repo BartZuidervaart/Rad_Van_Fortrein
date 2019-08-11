@@ -72,27 +72,24 @@ export class InzetComponent implements OnInit {
     //En je gaat weer terug naar de home pagina
     this.treinen.push(this.selectedTrein.naam);
     this.getSpeler();
-    // this.station = new Station("ASD", "Amsterdam Centraal", this.treinen);
-    // this.game = new Game(1, this.selectedTrein.naam, this.station.code, new Array<Inzet>(), 0);
-    // this.speler = new Speler(1, "Barry", 500, new Array<Inzet>());
-    // this.getStation();
   }
 
-  getStation() {
-    this.stationService.retrieveByNaam("ASD").subscribe(
-      (station: Station) => {
-        this.station = station
-        console.log("GET station request is succesful ", station);
-      },
-      error => {
-        console.log("Error", error);
-      },
-      () => {
-        this.station.treinen = this.treinen;
-        this.getSpeler();
-      }
-    )
-  }
+  // might get deleted
+  // getStation() {
+  //   this.stationService.retrieveByNaam("ASD").subscribe(
+  //     (station: Station) => {
+  //       this.station = station
+  //       console.log("GET station request is succesful ", station);
+  //     },
+  //     error => {
+  //       console.log("Error", error);
+  //     },
+  //     () => {
+  //       this.station.treinen = this.treinen;
+  //       this.getSpeler();
+  //     }
+  //   )
+  // }
 
   getSpeler() {
     this.spelerService.retrieveById(this.spelerId).subscribe(
@@ -124,7 +121,6 @@ export class InzetComponent implements OnInit {
         }
       },
       () => {
-        // find out if player already bet
         if(this.checkSpelerGame()) {
           alert("Je hebt al ingezet op deze trein, kies een andere trein en zet daar op in");
         } else {
