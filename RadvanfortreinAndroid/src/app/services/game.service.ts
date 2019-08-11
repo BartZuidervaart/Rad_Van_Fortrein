@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Game } from '../domain/Game/game';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Trein } from '../domain/Trein/trein';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,10 @@ export class GameService {
 
   public retrieveById(id:number): Observable<Game> {
     return this.http.get<Game>(`${environment.radVanFortreinURL}/games/${id}`)
+  }
+
+  public retrieveByTrein(trein:Trein): Observable<Game> {
+    return this.http.get<Game>(`${environment.radVanFortreinURL}/games/trein/${trein.naam}`)
   }
 
   public update(game:Game): Observable<Game> {

@@ -38,6 +38,7 @@ export class InzetComponent implements OnInit {
   speler: Speler;
   inzet: Inzet;
   teWinnenPunten: number = 0;
+  spelerId: number = 998;
 
   keuzes: Keuze[] = [
     { value: false, viewValue: 'Op tijd' },
@@ -70,10 +71,11 @@ export class InzetComponent implements OnInit {
     //Hier moet de inzet worden verstuurd!
     //En je gaat weer terug naar de home pagina
     this.treinen.push(this.selectedTrein.naam);
+    this.getSpeler();
     // this.station = new Station("ASD", "Amsterdam Centraal", this.treinen);
     // this.game = new Game(1, this.selectedTrein.naam, this.station.code, new Array<Inzet>(), 0);
     // this.speler = new Speler(1, "Barry", 500, new Array<Inzet>());
-    this.getStation();
+    // this.getStation();
   }
 
   getStation() {
@@ -93,10 +95,82 @@ export class InzetComponent implements OnInit {
   }
 
   getSpeler() {
-    this.spelerService.retrieveById(998).subscribe(
+    this.spelerService.retrieveById(this.spelerId).subscribe(
       (speler: Speler) => {
         this.speler = speler;
         console.log("GET speler request is succesful ", speler);
+      },
+      error => {
+        if (error.status === 404) {
+          console.log("speler not found");
+          this.speler = new Speler(this.spelerId, "Robert", 500, new Array<Inzet>()); //verander spelerId naar 0 als we meerdere spelers hebben.
+          this.createSpeler();
+        }
+      },
+      () => {
+        this.getGame();
+      }
+    )
+  }
+
+  getGame() {
+    this.gameService.retrieveByTrein(this.selectedTrein).subscribe(
+      (game: Game) => {
+        this.game = game;
+      },
+      error => {
+        if (error.status === 404) {
+          this.createGame();
+        }
+      },
+      () => {
+        // find out if player already bet
+        if(this.checkSpelerGame()) {
+          alert("Je hebt al ingezet op deze trein, kies een andere trein en zet daar op in");
+        } else {
+          this.createInzet();
+        }
+      }
+    )
+  }
+
+  createGame() {
+    this.game = new Game(0, this.selectedTrein.naam, "ASD", new Array<Inzet>(), 0);
+    this.gameService.create(this.game).subscribe(
+      (game: Game) => {
+        this.game = game;
+        console.log("POST game request is succesful ", game);
+      },
+      error => {
+        console.log("Error", error);
+      },
+      () => {
+        this.createInzet();
+      }
+    )
+  }
+
+  createInzet() {
+    this.inzet = new Inzet(0, this.speler, this.game, this.aantalPunten, this.keuzeTeLaat, this.aantalPunten * 2);
+    this.inzetService.create(this.inzet).subscribe(
+      (inzet: Inzet) => {
+        this.inzet = inzet;
+        console.log("POST inzet request is succesful ", inzet);
+      },
+      error => {
+        console.log("Error", error);
+      },
+      () => {
+        this.gaNaarHome();
+      }
+    )
+  }
+
+  createSpeler() {
+    this.spelerService.create(this.speler).subscribe (
+      (speler: Speler) => {
+        this.speler = speler;
+        console.log("POST speler request is succesful ", speler);
       },
       error => {
         console.log("Error", error);
@@ -107,69 +181,14 @@ export class InzetComponent implements OnInit {
     )
   }
 
-  getGame() {
-    this.gameService.retrieveById(999).subscribe(
-      (game: Game) => {
-        this.game = game;
-        console.log("GET game request is succesful ", game);
-      },
-      error => {
-        console.log("Error", error);
-      },
-      () => {
-        this.inzet = new Inzet(0, this.speler, this.game, this.aantalPunten, this.keuzeTeLaat, this.teWinnenPunten);
-        this.game.trein = this.selectedTrein.naam;
-        this.game.station = this.station.code;
-        console.log(this.inzet);
-        this.createInzet();
+  //returns true als Speler een Inzet in die Game heeft
+  checkSpelerGame() : boolean{
+    for (let inzet of this.speler.inzetten) {
+      if (this.game.id === inzet.game.id) {
+        return true;
       }
-    )
-  }
-
-  createInzet() {
-    this.inzetService.create(this.inzet).subscribe(
-      (inzet: Inzet) => {
-        this.inzet = inzet;
-        console.log("POST inzet request is succesful ", inzet);
-      },
-      error => {
-        console.log("Error", error);
-      },
-      () => {
-        
-        this.updateStation();
-      }
-    )
-  }
-
-  updateStation() {
-    this.stationService.create(this.station).subscribe(
-      (station: Station) => {
-        this.station = station
-        console.log("PUT station request is succesful ", station);
-      },
-      error => {
-        console.log("Error", error);
-      },
-      () => {
-        this.updateGame();
-      }
-    )
-  }
-
-  updateGame() {
-    this.gameService.update(this.game).subscribe(
-      (game: Game) => {
-        this.game = game;
-        console.log("PUT game request is succesful ", game);
-      },
-      error => {
-        console.log("Error", error);
-      },
-      () => {
-        this.gaNaarHome();
-      }
-    )
+    }
+    return false;
   }
 
   onSelectionChanged(trein: Trein): void {
