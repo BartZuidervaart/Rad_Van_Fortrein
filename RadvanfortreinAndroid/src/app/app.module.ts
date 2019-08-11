@@ -23,6 +23,7 @@ import { ResultaatElementComponent } from './resultaat/resultaat-element/resulta
 import { InzetService } from './services/inzet.service';
 import { InzettenComponent } from './inzetten/inzetten.component';
 import { SpelersComponent } from './spelers/spelers.component';
+import { ResultaatElementTimerComponent } from './resultaat/resultaat-element-timer/resultaat-element-timer.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SpelersComponent } from './spelers/spelers.component';
     ResultaatElementComponent,
     InzettenComponent,
     SpelersComponent,
+    ResultaatElementTimerComponent,
   ],
   imports: [
     BrowserModule,
