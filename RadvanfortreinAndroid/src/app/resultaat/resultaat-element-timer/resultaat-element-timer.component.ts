@@ -71,7 +71,6 @@ export class ResultaatElementTimerComponent implements OnInit {
       clearInterval(this.timer);
     
     } else {
-      
       var seconds = Math.floor(difference / 1000);
       var minutes = Math.floor(seconds / 60);
       var hours = Math.floor(minutes / 60);
@@ -84,12 +83,6 @@ export class ResultaatElementTimerComponent implements OnInit {
       this.hours = hours;
       this.minutes = minutes;
       this.seconds = seconds;
-
-  
-      // $("#days").text(days);
-      // $("#hours").text(hours);
-      // $("#minutes").text(minutes);
-      // $("#seconds").text(seconds);
     }
   
 

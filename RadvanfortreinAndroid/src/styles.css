@@ -9,7 +9,9 @@
   -o-transition: all 1s ease;
 }
 
-html, body { height: 100%; padding: 3%}
+html, body { height: 100%; 
+  /* padding: 3%; */
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #c93937; color: white}
 
 .mat-tab-link{
