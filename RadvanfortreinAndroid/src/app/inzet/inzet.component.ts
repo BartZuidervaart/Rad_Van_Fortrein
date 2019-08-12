@@ -30,6 +30,7 @@ export class InzetComponent implements OnInit {
   thirdFormGroup: FormGroup;
   aantalPunten = 0;
   selectedTrein: Trein;
+  selectedTreinOrigin: string;
   keuzeTeLaat: boolean;
   treinen: string[];
   treinNaam: string;
@@ -68,8 +69,6 @@ export class InzetComponent implements OnInit {
 
   submit() {
     console.log(this.selectedTrein, this.keuzeTeLaat, this.aantalPunten);
-    //Hier moet de inzet worden verstuurd!
-    //En je gaat weer terug naar de home pagina
     this.treinen.push(this.selectedTrein.naam);
     this.getSpeler();
   }
@@ -200,6 +199,7 @@ export class InzetComponent implements OnInit {
 
   onSelectionChanged(trein: Trein): void {
     this.selectedTrein = trein;
+    this.selectedTreinOrigin = this.selectedTrein.origin;
     console.log(this.selectedTrein);
   }
 

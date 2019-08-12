@@ -24,6 +24,7 @@ import { InzetService } from './services/inzet.service';
 import { InzettenComponent } from './inzetten/inzetten.component';
 import { SpelersComponent } from './spelers/spelers.component';
 import { ResultaatElementTimerComponent } from './resultaat/resultaat-element-timer/resultaat-element-timer.component';
+import { TijdPipe } from './pipes/tijd.pipe';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ResultaatElementTimerComponent } from './resultaat/resultaat-element-ti
     InzettenComponent,
     SpelersComponent,
     ResultaatElementTimerComponent,
+    TijdPipe,
   ],
   imports: [
     BrowserModule,

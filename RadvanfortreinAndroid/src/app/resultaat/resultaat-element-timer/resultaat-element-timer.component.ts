@@ -23,9 +23,10 @@ export class ResultaatElementTimerComponent implements OnInit {
   werkelijkeAankomstTijd: string;
   teLaat: boolean;
   timer;
-  seconds: number;
-  minutes: number;
-  hours: number;
+  seconds: string;
+  minutes: string;
+  hours: string;
+  time: string;
 
   constructor(
     private treinService : TreinService,
@@ -64,7 +65,6 @@ export class ResultaatElementTimerComponent implements OnInit {
     var dateEntered = toDate;
     var now = new Date();
     var difference = dateEntered.getTime() - now.getTime();
-  
     if (difference <= 0) {
   
       // Timer done
@@ -80,9 +80,10 @@ export class ResultaatElementTimerComponent implements OnInit {
       minutes %= 60;
       seconds %= 60;
 
-      this.hours = hours;
-      this.minutes = minutes;
-      this.seconds = seconds;
+      this.hours = hours.toString();
+      this.minutes = minutes.toString();
+      this.seconds = seconds.toString();
+      this.time = this.hours.toString().concat(":" + this.minutes.toString() + ":" + this.seconds.toString());
     }
   
 
