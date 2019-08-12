@@ -74,23 +74,6 @@ export class InzetComponent implements OnInit {
     this.getSpeler();
   }
 
-  // might get deleted
-  // getStation() {
-  //   this.stationService.retrieveByNaam("ASD").subscribe(
-  //     (station: Station) => {
-  //       this.station = station
-  //       console.log("GET station request is succesful ", station);
-  //     },
-  //     error => {
-  //       console.log("Error", error);
-  //     },
-  //     () => {
-  //       this.station.treinen = this.treinen;
-  //       this.getSpeler();
-  //     }
-  //   )
-  // }
-
   getSpeler() {
     this.spelerService.retrieveById(this.spelerId).subscribe(
       (speler: Speler) => {
@@ -102,6 +85,10 @@ export class InzetComponent implements OnInit {
           console.log("speler not found");
           this.speler = new Speler(this.spelerId, "Robert", 500, new Array<Inzet>()); //verander spelerId naar 0 als we meerdere spelers hebben.
           this.createSpeler();
+        } else if (error.status === 500) {
+          alert("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
+        } else {
+          console.log("Error", error);
         }
       },
       () => {
@@ -118,6 +105,10 @@ export class InzetComponent implements OnInit {
       error => {
         if (error.status === 404) {
           this.createGame();
+        } else if (error.status === 500) {
+          alert("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
+        } else {
+          console.log("Error", error);
         }
       },
       () => {
@@ -138,7 +129,13 @@ export class InzetComponent implements OnInit {
         console.log("POST game request is succesful ", game);
       },
       error => {
-        console.log("Error", error);
+        if (error.status === 409) {
+          alert("De game id bestaat al in de database, neem contact op.");
+        } else if (error.status === 500) {
+          alert("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
+        } else {
+          console.log("Error", error);
+        }
       },
       () => {
         this.createInzet();
@@ -154,7 +151,15 @@ export class InzetComponent implements OnInit {
         console.log("POST inzet request is succesful ", inzet);
       },
       error => {
-        console.log("Error", error);
+        if (error.status === 409) {
+          alert("Het inzet id bestaat al, neem contact op");
+        } else if (error.status === 400) {
+          alert("De hoeveelheid punten die je hebt ingezet is niet geldig (teveel of te weinig punten ingezet)");
+        } else if (error.status === 500) {
+          alert("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
+        } else {
+          console.log("Error", error);
+        }
       },
       () => {
         this.gaNaarHome();
@@ -169,7 +174,13 @@ export class InzetComponent implements OnInit {
         console.log("POST speler request is succesful ", speler);
       },
       error => {
-        console.log("Error", error);
+        if (error.status === 409) {
+          alert("De speler id bestaat al, neem contact op.");
+        } else if (error.status === 500) {
+          alert("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
+        } else {
+          console.log("Error", error);
+        }
       },
       () => {
         this.getGame();
