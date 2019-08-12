@@ -5,11 +5,12 @@
     <mat-tab label="Resultaat"> <app-resultaat></app-resultaat> </mat-tab>
 </mat-tab-group> -->
 <nav mat-tab-nav-bar mat-align-tabs="center">
+    
     <a class="tab" mat-tab-link *ngFor="let link of navLinks" 
     [routerLink]="link.link" 
     routerLinkActive #rla="routerLinkActive"
     [active]="rla.isActive">
-    <mat-icon>{{link.icon}}</mat-icon>
+    <mat-icon >{{link.icon}}</mat-icon>
       {{link.label}}
     </a>
 </nav>
