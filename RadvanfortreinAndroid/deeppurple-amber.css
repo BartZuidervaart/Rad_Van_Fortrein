@@ -167,11 +167,13 @@
 .mat-expansion-panel-header {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 15px;
-    font-weight: 400
+    font-weight: 400;
+    background: #8f2e20;
 }
 
 .mat-expansion-panel-content {
-    font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif
+    font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
+    background: #8f2e20;
 }
 
 .mat-form-field {
@@ -1583,12 +1585,13 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-expansion-panel {
-    background: #fff;
+    background: #8f2e20;;
     color: rgba(255, 255, 255, .87)
 }
 
 .mat-expansion-panel:not([class*=mat-elevation-z]) {
-    box-shadow: 0 3px 1px -2px rgba(255, 255, 255, .2), 0 2px 2px 0 rgba(255, 255, 255, .14), 0 1px 5px 0 rgba(255, 255, 255, .12)
+    background: #8f2e20;
+    /* box-shadow: 0 3px 1px -2px rgba(255, 255, 255, .2), 0 2px 2px 0 rgba(255, 255, 255, .14), 0 1px 5px 0 rgba(255, 255, 255, .12) */
 }
 
 .mat-action-row {
@@ -1596,16 +1599,17 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]).cdk-keyboard-focused, .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]).cdk-program-focused, .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover {
-    background: rgba(255, 255, 255, .04)
+    background: #8f2e20;
 }
 
 @media (hover:none) {
     .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
-        background: #fff
+        background: #8f2e20;
     }
 }
 
 .mat-expansion-panel-header-title {
+    background: #8f2e20;
     color: rgba(255, 255, 255, .87)
 }
 
@@ -1614,6 +1618,7 @@ mat-footer-row, mat-header-row, mat-row, td.mat-cell, td.mat-footer-cell, th.mat
 }
 
 .mat-expansion-panel-header[aria-disabled=true] {
+    background: #8f2e20;
     color: rgba(255, 255, 255, .26)
 }
 

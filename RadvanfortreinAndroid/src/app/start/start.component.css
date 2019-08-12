@@ -3,7 +3,9 @@
     max-width: 300 px;
     height: 20%;
     font-size: 300%;
-    margin:20px auto;
+    margin: 5px auto;
+    /* margin-left:20px auto; */
+    /* margin-bottom: 10px auto; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,4 +14,9 @@
 
 h1{
     text-align: center;
+}
+
+img{
+    width: 50%;
+    padding-left: 25%
 }
