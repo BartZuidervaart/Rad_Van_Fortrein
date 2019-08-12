@@ -2,7 +2,7 @@
 <table mat-table [dataSource]="treinen" class="mat-elevation-z8" >
 
     <!-- Checkbox Column -->
-    <ng-container matColumnDef="select">
+    <ng-container matColumnDef="select" id="select">
         <th mat-header-cell *matHeaderCellDef>
         </th>
         <td mat-cell *matCellDef="let row">
@@ -10,22 +10,22 @@
         </td>
     </ng-container>
     <!-- Time Column -->
-    <ng-container matColumnDef="tijd">
+    <ng-container matColumnDef="tijd" id="tijd">
         <th mat-header-cell *matHeaderCellDef> Tijd </th>
         <td mat-cell *matCellDef="let element"> {{element.geplandeAankomsten[0].substring(11,16)}} </td>
     </ng-container>
 
     <!-- Origin Column -->
-    <ng-container matColumnDef="vertrekstation">
+    <ng-container matColumnDef="vertrekstation" id="vertrekstation">
         <th mat-header-cell *matHeaderCellDef> Vertrek station </th>
         <td mat-cell *matCellDef="let element"> {{element.origin}} </td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- Name Column
     <ng-container matColumnDef="treinnaam">
         <th mat-header-cell *matHeaderCellDef>Trein naam</th>
         <td mat-cell *matCellDef="let element"> {{element.naam}}</td>
-    </ng-container>
+    </ng-container> -->
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
