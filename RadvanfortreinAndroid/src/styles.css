@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '../deeppurple-amber.css';
 
 .animate-all {
   transition: all 1s ease;
@@ -10,4 +10,24 @@
 }
 
 html, body { height: 100%; padding: 3%}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #c93937; color: white}
+
+.mat-tab-link{
+  opacity : 1 !important;
+}
+
+.mat-tab-header{
+  background : #8f2e20;
+}
+
+
+.mat-radio-inner-circle{
+  height:40px !important;
+  width: 40px !important;
+  top: -10px !important;
+  left: -10px !important;
+}
+
+.mat-radio-outer-circle{
+  background-color: #8f2e20 !important;
+}
