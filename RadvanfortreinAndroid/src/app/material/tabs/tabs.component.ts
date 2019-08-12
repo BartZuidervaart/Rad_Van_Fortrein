@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tabs',
@@ -12,22 +14,28 @@ export class TabsComponent implements OnInit{
   navLinks: any[];
   activeLinkIndex = -1;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer) {
+    this.matIconRegistry.addSvgIcon(
+      'rvft_icon',
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../assets/Trein-icon.svg")
+    );
     this.navLinks = [
       {
         label: 'Home',
         link: 'home',
-        index: 0,
+        index: 1,
         icon: 'home'
       }, {
         label: 'Inzetten',
         link: 'inzet',
-        index: 1,
+        index: 2,
         icon: 'train'
       }, {
         label: 'Resultaat',
         link: 'resultaat',
-        index: 2,
+        index: 3,
         icon:'check_circle'
       },
     ];
