@@ -9,7 +9,8 @@
     [routerLink]="link.link" 
     routerLinkActive #rla="routerLinkActive"
     [active]="rla.isActive">
-    {{link.label}}
+    <mat-icon>{{link.icon}}</mat-icon>
+      {{link.label}}
     </a>
 </nav>
 <router-outlet></router-outlet>

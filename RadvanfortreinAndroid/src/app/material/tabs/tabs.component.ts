@@ -17,15 +17,18 @@ export class TabsComponent implements OnInit{
       {
         label: 'Home',
         link: 'home',
-        index: 0
+        index: 0,
+        icon: 'home'
       }, {
         label: 'Inzetten',
         link: 'inzet',
-        index: 1
+        index: 1,
+        icon: 'train'
       }, {
         label: 'Resultaat',
         link: 'resultaat',
-        index: 2
+        index: 2,
+        icon:'check_circle'
       },
     ];
   }
