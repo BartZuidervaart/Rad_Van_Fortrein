@@ -191,11 +191,6 @@ export class InzetComponent implements OnInit {
     )
   }
 
-  // deleteInzet() {
-  //   this.inzetService.delete(this
-  // }
-
-
   //returns true als Speler een Inzet in die Game heeft
   checkSpelerGame() : boolean{
     for (let inzet of this.speler.inzetten) {

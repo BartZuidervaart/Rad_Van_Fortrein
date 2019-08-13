@@ -3,6 +3,8 @@ import { Inzet } from '../../domain/Inzet/inzet';
 import { TreinService } from '../../services/trein.service'
 import { Trein } from '../../domain/Trein/trein';
 import { HttpErrorResponse } from '@angular/common/http';
+import { InzetService } from '../../services/inzet.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-resultaat-element',
@@ -25,6 +27,8 @@ resultaatTeLaat: boolean;
  
 constructor(
   private treinService : TreinService,
+  private inzetService : InzetService,
+  private router: Router
   ) { }
 
   ngOnInit(){
@@ -54,6 +58,21 @@ constructor(
       () => {
         console.log(JSON.stringify(this.trein));
       }
+    )
+  }
+
+  DeleteInzet(){
+    this.inzetService.delete(this.inzet.id).subscribe(
+      () => {
+        console.log("DELETE inzet request is succesful ", this.inzet);
+      },
+      (error = HttpErrorResponse) => {
+        console.log(error);
+      },
+      () => {
+        this.router.navigate(['redirect', 'resultaat'])
+      }
+
     )
   }
 }

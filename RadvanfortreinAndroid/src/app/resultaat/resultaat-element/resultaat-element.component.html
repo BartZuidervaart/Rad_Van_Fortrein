@@ -10,4 +10,6 @@
     Jij hebt {{inzet.inzetTeLaat == resultaatTeLaat ? 'goed' : 'fout'}} gegokt! <br>
     {{inzet.inzetTeLaat == resultaatTeLaat ? 'Je verdient hiermee ' : 'Je loopt hierdoor '}} {{inzet.inzetBedrag * 2}} 
     {{inzet.inzetTeLaat == resultaatTeLaat ? 'punten.' : 'punten mis.'}}
+    <br>
+    <a mat-raised-button (click)="DeleteInzet()">Delete</a><br>
 </mat-expansion-panel>
