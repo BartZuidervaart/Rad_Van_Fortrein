@@ -1,14 +1,12 @@
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-        <mat-panel-title>
-            {{treinOrigin}} naar Amsterdam
-            van {{geplandeAankomstTijd}}
-        </mat-panel-title>
-    </mat-expansion-panel-header>
+<div *ngIf="[hours] == '0' && [minutes] == '0' && [seconds] == '0'; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+  <app-resultaat-element [inzet]='inzet'></app-resultaat-element>
+</ng-template>
+<ng-template #elseBlock>
     Er is nog geen resultaat bekend. <br>
     De geplande aankomsttijd is over:
     <div id="timer">
         <!-- {{time | date: 'hh:mm:ss'}} -->
         {{hours | tijd }} : {{minutes | tijd }} : {{seconds | tijd }}
     </div>
-</mat-expansion-panel>
+</ng-template>

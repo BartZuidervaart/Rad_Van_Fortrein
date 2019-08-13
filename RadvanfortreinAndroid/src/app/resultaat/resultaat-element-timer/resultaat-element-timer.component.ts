@@ -3,6 +3,9 @@ import { Inzet } from '../../domain/Inzet/inzet';
 import { Trein } from '../../domain/Trein/trein';
 import { TreinService } from '../../services/trein.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ResultaatComponent } from '../resultaat.component';
+import { InzetService } from '../../services/inzet.service';
 
 @Component({
   selector: 'app-resultaat-element-timer',
@@ -30,6 +33,9 @@ export class ResultaatElementTimerComponent implements OnInit {
 
   constructor(
     private treinService : TreinService,
+    private inzetService : InzetService,
+    private router: Router,
+    private resultaatComponent : ResultaatComponent,
   ) { }
 
   ngOnInit() {
@@ -37,6 +43,7 @@ export class ResultaatElementTimerComponent implements OnInit {
     this.GetTrein();
     this.timer = setInterval(() => {
       this.timeBetweenDates(this.geplandeAankomstDate);
+      
     }, 1000);
   }
 
@@ -51,12 +58,27 @@ export class ResultaatElementTimerComponent implements OnInit {
         this.werkelijkeAankomstString = trein.werkelijkeAankomsten[0];
         this.werkelijkeAankomstDate = new Date(this.werkelijkeAankomstString);
         this.teLaat = trein.teLaat;
+        console.log("GET trein request is succesful  " + trein)
       },
       (error = HttpErrorResponse) => {
         console.log(error);
       },
       () => {
-        console.log(JSON.stringify(this.trein));
+      }
+    )
+  }
+
+  getInzet(){
+    this.inzetService.retrieveById(this.inzet.id).subscribe(
+      (inzet : Inzet) => {
+        
+        console.log("GET inzet request is succesful  " + inzet)
+      },
+      (error = HttpErrorResponse) => {
+        console.log(error);
+      },
+      () => {
+        this.resultaatComponent.resultaat = this.inzet.game.resultaat;
       }
     )
   }
@@ -84,8 +106,10 @@ export class ResultaatElementTimerComponent implements OnInit {
       this.minutes = minutes.toString();
       this.seconds = seconds.toString();
       this.time = this.hours.toString().concat(":" + this.minutes.toString() + ":" + this.seconds.toString());
+      if(hours == 0 && minutes == 0 && seconds == 0){
+        this.getInzet();
+        
+      }
     }
-  
-
 }
 }

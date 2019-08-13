@@ -1,15 +1,7 @@
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-            <mat-panel-title>
-                    {{treinOrigin}} naar Amsterdam 
-                    van {{geplandeAankomstTijd}}
-            </mat-panel-title>
-    </mat-expansion-panel-header>
-    De trein is aangekomen op: {{werkelijkeAankomstTijd}}. <br>
-    De trein {{teLaat ? ' heeft vertraging op gelopen.' : ' is op tijd aangekomen.'}} <br>
-    Jij hebt {{inzet.inzetTeLaat == resultaatTeLaat ? 'goed' : 'fout'}} gegokt! <br>
-    {{inzet.inzetTeLaat == resultaatTeLaat ? 'Je verdient hiermee ' : 'Je loopt hierdoor '}} {{inzet.inzetBedrag * 2}} 
-    {{inzet.inzetTeLaat == resultaatTeLaat ? 'punten.' : 'punten mis.'}}
-    <br>
-    <a mat-raised-button (click)="DeleteInzet()">Delete</a><br>
-</mat-expansion-panel>
+De trein is aangekomen op: {{werkelijkeAankomstTijd}}. <br>
+De trein {{teLaat ? ' heeft vertraging op gelopen.' : ' is op tijd aangekomen.'}} <br>
+Jij hebt {{inzet.inzetTeLaat == resultaatTeLaat ? 'goed' : 'fout'}} gegokt! <br>
+{{inzet.inzetTeLaat == resultaatTeLaat ? 'Je verdient hiermee ' : 'Je loopt hierdoor '}} {{inzet.inzetBedrag * 2}} 
+{{inzet.inzetTeLaat == resultaatTeLaat ? 'punten.' : 'punten mis.'}}
+<br>
+<a mat-raised-button (click)="DeleteInzet()">Delete</a><br>

@@ -35,11 +35,6 @@ export class TabelComponent implements OnInit{
   onSelectionChange(entry) {
     this.selectedEntry = entry;
     this.notify.emit(this.selectedEntry);
-    // console.log(this.selectedEntry);
-  }
-
-  submit() {
-    console.log(this.selectedEntry.naam);
   }
 }
 

@@ -1,18 +1,26 @@
 <div id="resultaatBody">
 <p>Hier kun je het resultaat bekijken als er op een trein is gegokt</p>
-<mat-accordion>
-        <div *ngFor="let inzet of inzettenArray; index as i">
-                <div *ngIf="inzet.game.resultaat == 1 || inzet.game.resultaat == 2; then thenBlock else elseBlock"></div>
-                <ng-template #thenBlock>
+<mat-accordion >
+        <div *ngFor="let inzet of inzettenArray; index as i" >
+                
+                <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{treinOrigins[i]}} naar Amsterdam
+                                van {{geplandeAankomsten[i]}}
+                            </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div 
+                *ngIf="inzet.game.resultaat == 1 || inzet.gameresultaat == 2; then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>
                         <app-resultaat-element
-                        [inzet]='inzet' ></app-resultaat-element>
+                        [inzet]='inzet' (notify)="onNotifyEvent($event)"></app-resultaat-element>
                 </ng-template>
                 <ng-template #elseBlock>
                         <app-resultaat-element-timer
                         [inzet]='inzet'></app-resultaat-element-timer>
                 </ng-template>
-                
-       
+                </mat-expansion-panel>
         </div>
 </mat-accordion>
 <br>
