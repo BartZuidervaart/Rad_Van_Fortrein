@@ -41,6 +41,6 @@ export class InzetService {
   }
 
   public delete(id:number): Observable<void> {
-    return this.http.delete<void>(`${environment.radVanFortreinURL}/treinen/${id}`);
+    return this.http.delete<void>(`${environment.radVanFortreinURL}/inzetten/${id}`);
   }
 }

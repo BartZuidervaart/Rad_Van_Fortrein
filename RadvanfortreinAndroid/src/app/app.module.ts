@@ -25,6 +25,7 @@ import { InzettenComponent } from './inzetten/inzetten.component';
 import { SpelersComponent } from './spelers/spelers.component';
 import { ResultaatElementTimerComponent } from './resultaat/resultaat-element-timer/resultaat-element-timer.component';
 import { TijdPipe } from './pipes/tijd.pipe';
+import { RedirectComponent } from './redirect/redirect.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TijdPipe } from './pipes/tijd.pipe';
     SpelersComponent,
     ResultaatElementTimerComponent,
     TijdPipe,
+    RedirectComponent,
   ],
   imports: [
     BrowserModule,

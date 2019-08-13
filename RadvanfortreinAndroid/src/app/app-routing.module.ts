@@ -4,6 +4,7 @@ import { StartComponent } from './start/start.component';
 import { InzetComponent } from './inzet/inzet.component';
 import { ResultaatComponent } from './resultaat/resultaat.component';
 import { TabelComponent } from './inzet/tabel/tabel.component';
+import { RedirectComponent } from './redirect/redirect.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full"},
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: "inzet", component: InzetComponent },
   { path: "resultaat", component: ResultaatComponent },
   { path: "tabel", component: TabelComponent },
+  { path: 'redirect/:url', component: RedirectComponent },
 ];
 
 @NgModule({

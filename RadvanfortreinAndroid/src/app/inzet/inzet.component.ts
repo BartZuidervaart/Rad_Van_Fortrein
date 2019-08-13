@@ -40,6 +40,7 @@ export class InzetComponent implements OnInit {
   inzet: Inzet;
   teWinnenPunten: number = 0;
   spelerId: number = 998;
+  totaalPunten: number;
 
   keuzes: Keuze[] = [
     { value: false, viewValue: 'Op tijd' },
@@ -65,18 +66,20 @@ export class InzetComponent implements OnInit {
       aantalPunten: new FormControl()
     });
     this.treinen = [];
+    this.getSpeler(false);
   }
 
   submit() {
     console.log(this.selectedTrein, this.keuzeTeLaat, this.aantalPunten);
     this.treinen.push(this.selectedTrein.naam);
-    this.getSpeler();
+    this.getSpeler(true);
   }
 
-  getSpeler() {
+  getSpeler(inzet: boolean) {
     this.spelerService.retrieveById(this.spelerId).subscribe(
       (speler: Speler) => {
         this.speler = speler;
+        this.totaalPunten = speler.totaalPunten;
         console.log("GET speler request is succesful ", speler);
       },
       error => {
@@ -91,7 +94,8 @@ export class InzetComponent implements OnInit {
         }
       },
       () => {
-        this.getGame();
+        if(inzet){
+        this.getGame();}
       }
     )
   }
