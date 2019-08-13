@@ -32,7 +32,7 @@
       <ng-template matStepLabel>Hoe veel punten wil je inzetten?</ng-template>
       <!-- De max value zou aanpasbaar moeten worden aan de hand van de max punten van de speler. -->
       <br>
-      <mat-slider min="1" max="50" thumbLabel [(value)]="aantalPunten"></mat-slider>
+      <mat-slider min="1" [max]="totaalPunten" thumbLabel [(value)]="aantalPunten"></mat-slider>
       <div>
         <button mat-button matStepperPrevious>Terug</button>
         <button mat-button matStepperNext>Volgende</button>
