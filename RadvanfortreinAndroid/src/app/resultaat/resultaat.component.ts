@@ -21,13 +21,15 @@ export class ResultaatComponent implements OnInit {
   spelerId = 998;
   inzettenArray: Inzet[];
   totaalPunten: number;
-  spelerInzetten : Inzet[];
-  resultaat: boolean;
+  spelerInzetten: Inzet[];
+  resultaat: number;
   clicked: boolean[] = [false];
   trein: Trein;
   treinNaam: string;
   treinOrigin: string;
+  treinOrigins: Array<string> = [];
   geplandeAankomstTijd: string;
+  geplandeAankomsten: string[] =[];
   werkelijkeAankomstTijd: string;
 
   constructor(
@@ -37,41 +39,50 @@ export class ResultaatComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.GetSpeler();
+  }
+
+  GetSpeler() {
     this.spelerService.retrieveById(this.spelerId).subscribe(
       (speler: Speler) => {
         this.speler = speler;
         this.totaalPunten = speler.totaalPunten;
         this.inzettenArray = speler.inzetten;
-        console.log(JSON.stringify(this.speler));
-        console.log(JSON.stringify(this.totaalPunten));
-        console.log(JSON.stringify(this.inzettenArray));
       },
       (error = HttpErrorResponse) => {
         console.log(error);
       },
       () => {
+        // for(let inzet of this.inzettenArray){
+        //   this.GetTrein(inzet.game.trein);
+        // }
+        // console.log(this.inzettenArray)
       }
     )
   }
 
-  GetTrein(){
-    this.treinService.retrieveByNaam(this.treinNaam).subscribe(
-      (trein : Trein) => {
+
+  GetTrein(naam: string) {
+    this.treinService.retrieveByNaam(naam).subscribe(
+      (trein: Trein) => {
         this.trein = trein;
         this.treinOrigin = trein.origin;
-        this.geplandeAankomstTijd = trein.geplandeAankomsten[0].substring(11,16);
-        this.werkelijkeAankomstTijd = trein.werkelijkeAankomsten[0].substring(11,16);
+        this.geplandeAankomstTijd = trein.geplandeAankomsten[0].substring(11, 16);
       },
       (error = HttpErrorResponse) => {
         console.log(error);
       },
       () => {
-        console.log(JSON.stringify(this.trein));
+        this.treinOrigins.push(this.treinOrigin);
+        this.geplandeAankomsten.push
       }
     )
   }
 
-  
+  ResultaatChange(inzet) {
+    this.resultaat = inzet.game.resultaat;
+  } 
+
   // ResultaatClick(inzet, index) {
   //   this.resultaat = inzet.inzetTeLaat == inzet.game.trein.teLaat;
   //   if (this.resultaat) {
@@ -97,7 +108,7 @@ export class ResultaatComponent implements OnInit {
   //       this.reloadPunten();
   //     }
   //   )
-    
+
   // }
 
   // reloadPunten(){
@@ -110,5 +121,12 @@ export class ResultaatComponent implements OnInit {
 
   getSpeler() {
     return this.speler;
+  }
+
+  onNotifyEvent(trein: Trein) {
+      this.trein = trein;
+      this.treinOrigins.push(trein.origin);
+      this.geplandeAankomsten.push(trein.geplandeAankomsten[0].substring(11,16));
+      console.log("Trein in resultaat is ontvangen");
   }
 }

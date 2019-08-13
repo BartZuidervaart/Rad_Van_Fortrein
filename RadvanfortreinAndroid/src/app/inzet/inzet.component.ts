@@ -10,7 +10,6 @@ import { Game } from '../domain/Game/game';
 import { Speler } from '../domain/Speler/speler';
 import { Inzet } from '../domain/Inzet/inzet';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 
 export interface Keuze {
   value: boolean;
@@ -70,7 +69,7 @@ export class InzetComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.selectedTrein, this.keuzeTeLaat, this.aantalPunten);
+    console.log(this.selectedTrein.naam, this.keuzeTeLaat, this.aantalPunten);
     this.treinen.push(this.selectedTrein.naam);
     this.getSpeler(true);
   }
@@ -204,7 +203,7 @@ export class InzetComponent implements OnInit {
   onSelectionChanged(trein: Trein): void {
     this.selectedTrein = trein;
     this.selectedTreinOrigin = this.selectedTrein.origin;
-    console.log(this.selectedTrein);
+    console.log("Geselecteerde trein: " + this.selectedTrein.naam);
   }
 
   gaNaarHome(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Inzet } from '../../domain/Inzet/inzet';
 import { TreinService } from '../../services/trein.service'
 import { Trein } from '../../domain/Trein/trein';
@@ -12,9 +12,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./resultaat-element.component.css']
 })
 export class ResultaatElementComponent implements OnInit {
+@Output() notify: EventEmitter<Trein> = new EventEmitter<Trein>();
 @Input("inzet") inzet: Inzet;
 @Input("trein") trein: Trein;
-//@Input("speler") speler: Speler;
 
 teWinnenPunten : number;
 //trein : Trein;
@@ -33,14 +33,17 @@ constructor(
 
   ngOnInit(){
     this.treinNaam = this.inzet.game.trein;
-    console.log(JSON.stringify(this.inzet.game.trein));
-    console.log(this.treinNaam);
     this.GetTrein();
     if (this.inzet.game.resultaat == 1){
       this.resultaatTeLaat = true;
     } else{
       this.resultaatTeLaat = false;
     }
+  }
+
+  treinToResultaat(): void{
+    console.log("Trein in resultaat wordt verstuurd" + JSON.stringify(this.trein));
+    this.notify.emit(this.trein);
   }
 
   GetTrein(){
@@ -51,12 +54,13 @@ constructor(
         this.geplandeAankomstTijd = trein.geplandeAankomsten[0].substring(11,16);
         this.werkelijkeAankomstTijd = trein.werkelijkeAankomsten[0].substring(11,16);
         this.teLaat = trein.teLaat;
+        console.log("GET trein request is succesful  " + trein);
       },
       (error = HttpErrorResponse) => {
         console.log(error);
       },
       () => {
-        console.log(JSON.stringify(this.trein));
+        this.treinToResultaat();
       }
     )
   }
