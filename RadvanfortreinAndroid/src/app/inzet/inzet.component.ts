@@ -11,7 +11,7 @@ import { Speler } from '../domain/Speler/speler';
 import { Inzet } from '../domain/Inzet/inzet';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 
 export interface Keuze {
   value: boolean;
