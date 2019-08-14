@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatInputModule, MatButtonModule, 
   MatSelectModule, MatIconModule,MatSidenavModule, MatListModule,
-  MatTabsModule, MatStepperModule, MatFormFieldModule, MatSliderModule, MatRadioModule, MatTableModule, MatExpansionModule
+  MatTabsModule, MatStepperModule, MatFormFieldModule, MatSliderModule, MatRadioModule, MatTableModule, MatExpansionModule, MatDialogModule
  } from '@angular/material';
 import { TabsComponent } from './material/tabs/tabs.component';
 import { TabelComponent } from './inzet/tabel/tabel.component';
@@ -26,6 +26,7 @@ import { SpelersComponent } from './spelers/spelers.component';
 import { ResultaatElementTimerComponent } from './resultaat/resultaat-element-timer/resultaat-element-timer.component';
 import { TijdPipe } from './pipes/tijd.pipe';
 import { RedirectComponent } from './redirect/redirect.component';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { RedirectComponent } from './redirect/redirect.component';
     ResultaatElementTimerComponent,
     TijdPipe,
     RedirectComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ import { RedirectComponent } from './redirect/redirect.component';
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
+    MatDialogModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule, 
@@ -69,6 +72,7 @@ import { RedirectComponent } from './redirect/redirect.component';
     MatExpansionModule,
     HttpClientModule
   ],
+  entryComponents: [ErrorDialogComponent],
   providers: [ InzetService ],
   bootstrap: [AppComponent]
 })

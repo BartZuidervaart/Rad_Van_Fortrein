@@ -19,7 +19,7 @@ export class ResultaatElementComponent implements OnInit {
 
 teWinnenPunten : number;
 treinNaam: string;
-treinOrigin: string;
+treinDirection: string;
 geplandeAankomstTijd: string;
 werkelijkeAankomstTijd: string;
 teLaat: boolean;
@@ -53,7 +53,7 @@ constructor(
     this.treinService.retrieveByNaam(this.treinNaam).subscribe(
       (trein : Trein) => {
         this.trein = trein;
-        this.treinOrigin = trein.origin;
+        this.treinDirection = trein.direction;
         this.geplandeAankomstTijd = trein.geplandeAankomsten[0].substring(11,16);
         this.werkelijkeAankomstTijd = trein.werkelijkeAankomsten[0].substring(11,16);
         this.teLaat = trein.teLaat;

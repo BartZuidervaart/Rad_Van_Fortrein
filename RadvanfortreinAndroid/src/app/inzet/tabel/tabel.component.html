@@ -15,10 +15,10 @@
         <td mat-cell *matCellDef="let element"> {{element.geplandeAankomsten[0].substring(11,16)}} </td>
     </ng-container>
 
-    <!-- Origin Column -->
+    <!-- Direction Column -->
     <ng-container matColumnDef="vertrekstation">
-        <th mat-header-cell *matHeaderCellDef> Vertrek station </th>
-        <td mat-cell *matCellDef="let element"> {{element.origin}} </td>
+        <th mat-header-cell *matHeaderCellDef> Richting station </th>
+        <td mat-cell *matCellDef="let element"> {{element.direction}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>

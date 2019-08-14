@@ -10,6 +10,8 @@ import { Game } from '../domain/Game/game';
 import { Speler } from '../domain/Speler/speler';
 import { Inzet } from '../domain/Inzet/inzet';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 
 
 export interface Keuze {
@@ -30,7 +32,7 @@ export class InzetComponent implements OnInit {
   thirdFormGroup: FormGroup;
   aantalPunten = 0;
   selectedTrein: Trein;
-  selectedTreinOrigin: string;
+  selectedTreinDirection: string;
   keuzeTeLaat: boolean = false;
   treinen: string[];
   treinNaam: string;
@@ -52,7 +54,8 @@ export class InzetComponent implements OnInit {
     private gameService: GameService,
     private inzetService: InzetService,
     private spelerService: SpelerService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -70,13 +73,13 @@ export class InzetComponent implements OnInit {
   }
 
   submit() {
-    if(this.selectedTrein == null){
-      console.log("Trein niet geselecteerd")
-      
-    }else{
-    console.log(this.selectedTrein.naam, this.keuzeTeLaat, this.aantalPunten);
-    this.treinen.push(this.selectedTrein.naam);
-    this.getSpeler(true);}
+    if (this.selectedTrein == null) {
+      this.openDialog("Er is geen trein geselecteerd. Selecteer een trein en probeer het nog eens.");
+    } else {
+      console.log(this.selectedTrein.naam, this.keuzeTeLaat, this.aantalPunten);
+      this.treinen.push(this.selectedTrein.naam);
+      this.getSpeler(true);
+    }
   }
 
   getSpeler(inzet: boolean) {
@@ -92,7 +95,7 @@ export class InzetComponent implements OnInit {
           this.speler = new Speler(this.spelerId, "Robert", 500, new Array<Inzet>()); //verander spelerId naar 0 als we meerdere spelers hebben.
           this.createSpeler();
         } else if (error.status === 500) {
-          alert("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
+          this.openDialog("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
         } else {
           console.log("Error", error);
         }
@@ -113,14 +116,14 @@ export class InzetComponent implements OnInit {
         if (error.status === 404) {
           this.createGame();
         } else if (error.status === 500) {
-          alert("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
+          this.openDialog("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
         } else {
           console.log("Error", error);
         }
       },
       () => {
         if(this.checkSpelerGame()) {
-          alert("Je hebt al ingezet op deze trein, kies een andere trein en zet daar op in");
+          this.openDialog("Je hebt al ingezet op deze trein, kies een andere trein en zet daar op in");
         } else {
           this.createInzet();
         }
@@ -137,9 +140,9 @@ export class InzetComponent implements OnInit {
       },
       error => {
         if (error.status === 409) {
-          alert("De game id bestaat al in de database, neem contact op.");
+          this.openDialog("De game id bestaat al in de database, neem contact op.");
         } else if (error.status === 500) {
-          alert("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
+          this.openDialog("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
         } else {
           console.log("Error", error);
         }
@@ -159,11 +162,11 @@ export class InzetComponent implements OnInit {
       },
       error => {
         if (error.status === 409) {
-          alert("Het inzet id bestaat al, neem contact op");
+          this.openDialog("Het inzet id bestaat al, neem contact op");
         } else if (error.status === 400) {
-          alert("De hoeveelheid punten die je hebt ingezet is niet geldig (teveel of te weinig punten ingezet)");
+          this.openDialog("De hoeveelheid punten die je hebt ingezet is niet geldig (teveel of te weinig punten ingezet)");
         } else if (error.status === 500) {
-          alert("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
+          this.openDialog("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
         } else {
           console.log("Error", error);
         }
@@ -182,9 +185,9 @@ export class InzetComponent implements OnInit {
       },
       error => {
         if (error.status === 409) {
-          alert("De speler id bestaat al, neem contact op.");
+          this.openDialog("De speler id bestaat al, neem contact op.");
         } else if (error.status === 500) {
-          alert("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
+          this.openDialog("Er is iets misgegaan bij de server, probeer het opnieuw. \n Als het probleem zich blijft voordoen, neem dan contact op.");
         } else {
           console.log("Error", error);
         }
@@ -207,12 +210,23 @@ export class InzetComponent implements OnInit {
 
   onSelectionChanged(trein: Trein): void {
     this.selectedTrein = trein;
-    this.selectedTreinOrigin = this.selectedTrein.origin;
+    this.selectedTreinDirection = this.selectedTrein.direction;
     console.log("Geselecteerde trein: " + this.selectedTrein.naam);
   }
 
   gaNaarHome(): void {
     this.router.navigate(['home']);
+  }
+
+  openDialog(errorMessage : string) : void {
+    const dialogRef = this.dialog.open(ErrorDialogComponent, {
+      width: '250px',
+      data: {message : errorMessage}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+     console.log("De error dialog is gesloten");
+    })
   }
 
 }

@@ -19,7 +19,7 @@ export class ResultaatElementTimerComponent implements OnInit {
   @Input("trein") trein: Trein;
 
   treinNaam: string;
-  treinOrigin: string;
+  treinDirection: string;
   geplandeAankomstString: string;
   werkelijkeAankomstString: string;
   geplandeAankomstDate: Date;
@@ -65,7 +65,7 @@ export class ResultaatElementTimerComponent implements OnInit {
     this.treinService.retrieveByNaam(this.treinNaam).subscribe(
       (trein : Trein) => {
         this.trein = trein;
-        this.treinOrigin = trein.origin;
+        this.treinDirection = trein.direction;
         this.geplandeAankomstString = trein.geplandeAankomsten[0];
         this.geplandeAankomstDate = new Date(this.geplandeAankomstString);
         this.geplandeAankomstTijd = this.geplandeAankomstString.substring(11,16)
