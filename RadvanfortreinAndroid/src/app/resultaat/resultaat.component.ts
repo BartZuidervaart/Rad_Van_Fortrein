@@ -53,14 +53,9 @@ export class ResultaatComponent implements OnInit {
         console.log(error);
       },
       () => {
-        // for(let inzet of this.inzettenArray){
-        //   this.GetTrein(inzet.game.trein);
-        // }
-        // console.log(this.inzettenArray)
       }
     )
   }
-
 
   GetTrein(naam: string) {
     this.treinService.retrieveByNaam(naam).subscribe(
@@ -79,48 +74,13 @@ export class ResultaatComponent implements OnInit {
     )
   }
 
-  ResultaatChange(inzet) {
-    this.resultaat = inzet.game.resultaat;
+  resultaatChange(resultaat: number) {
+    this.resultaat = resultaat;
+    console.log("Resultaat: " + JSON.stringify(this.resultaat));
   } 
-
-  // ResultaatClick(inzet, index) {
-  //   this.resultaat = inzet.inzetTeLaat == inzet.game.trein.teLaat;
-  //   if (this.resultaat) {
-  //     if (!this.clicked[index]) {
-  //       //this.UpdatePunten(inzet, index)
-  //       this.clicked[index] = true;
-  //     } else{}
-  //   }
-  //   else { }
-  // }
-
-  // UpdatePunten(inzet, index) {
-  //   this.spelerService.updatePunten(this.speler.id, this.inzettenArray[(index)].teWinnenBedrag).subscribe(
-  //     (speler: Speler) => this.speler = speler,
-  //     (fout: HttpErrorResponse) =>
-  //       alert("Er is een fout opgetreden: " +
-  //         fout.error.error.status + " " + fout.error.error + "\n" +
-  //         "\nMessage:\n" + fout.error.message
-  //       ),
-  //     () => {
-  //       //this.router.navigate(['redirect', 'resultaat'])
-  //       console.log(JSON.stringify(this.speler.getTotaalPunten));
-  //       this.reloadPunten();
-  //     }
-  //   )
-
-  // }
-
-  // reloadPunten(){
-  //   this.totaalPunten = this.speler.getTotaalPunten;
-  // }
 
   getInzetten() {
     return this.inzetten;
-  }
-
-  getSpeler() {
-    return this.speler;
   }
 
   onNotifyEvent(trein: Trein) {

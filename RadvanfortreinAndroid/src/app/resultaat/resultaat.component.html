@@ -10,15 +10,14 @@
                                                 van {{geplandeAankomsten[i]}}
                                         </mat-panel-title>
                                 </mat-expansion-panel-header>
-                                <div
-                                        *ngIf="inzet.game.resultaat == 1 || inzet.gameresultaat == 2; then thenBlock else elseBlock">
+                                <div *ngIf="inzet.game.resultaat == 1 || inzet.gameresultaat == 2; then thenBlock else elseBlock">
                                 </div>
                                 <ng-template #thenBlock>
-                                        <app-resultaat-element (notify)="onNotifyEvent($event)" [inzet]='inzet'>
+                                        <app-resultaat-element (notify)="onNotifyEvent($event)" (notify)="resultaatChange($event)" [inzet]='inzet'>
                                         </app-resultaat-element>
                                 </ng-template>
                                 <ng-template #elseBlock>
-                                        <app-resultaat-element-timer (notify)="onNotifyEvent($event)" [inzet]='inzet'>
+                                        <app-resultaat-element-timer (notify)="onNotifyEvent($event)" (notify)="resultaatChange($event)" [inzet]='inzet'>
                                         </app-resultaat-element-timer>
                                 </ng-template>
                         </mat-expansion-panel>

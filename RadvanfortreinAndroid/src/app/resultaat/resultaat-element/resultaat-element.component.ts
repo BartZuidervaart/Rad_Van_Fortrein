@@ -5,6 +5,7 @@ import { Trein } from '../../domain/Trein/trein';
 import { HttpErrorResponse } from '@angular/common/http';
 import { InzetService } from '../../services/inzet.service';
 import { Router } from '@angular/router';
+import { ResultaatComponent } from '../resultaat.component';
 
 @Component({
   selector: 'app-resultaat-element',
@@ -17,7 +18,6 @@ export class ResultaatElementComponent implements OnInit {
 @Input("trein") trein: Trein;
 
 teWinnenPunten : number;
-//trein : Trein;
 treinNaam: string;
 treinOrigin: string;
 geplandeAankomstTijd: string;
@@ -28,7 +28,8 @@ resultaatTeLaat: boolean;
 constructor(
   private treinService : TreinService,
   private inzetService : InzetService,
-  private router: Router
+  private router: Router,
+  private resultaatComponent : ResultaatComponent,
   ) { }
 
   ngOnInit(){
@@ -78,6 +79,10 @@ constructor(
       }
 
     )
+  }
+
+  refreshResultaat(){
+    this.router.navigate(['redirect', 'resultaat'])
   }
 }
 

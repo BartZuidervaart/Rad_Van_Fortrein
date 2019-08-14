@@ -3,6 +3,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Trein } from '../../../../src/app/domain/Trein/trein';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TreinService } from '../../../../src/app/services/trein.service';
+import { isNull } from 'util';
 
 const ELEMENT_DATA: Trein[] = [];
 
@@ -28,13 +29,14 @@ export class TabelComponent implements OnInit{
       (error = HttpErrorResponse) => {
         console.log(error);
       },
-      () => {}
+      () => {
+      }
     )
   }
 
   onSelectionChange(entry) {
-    this.selectedEntry = entry;
-    this.notify.emit(this.selectedEntry);
+      this.selectedEntry = entry;
+      this.notify.emit(this.selectedEntry);
   }
 }
 

@@ -3,6 +3,7 @@
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Kies een trein</ng-template>
+            <p>Aankomststation: <br>Amsterdam Centraal</p>
             <app-tabel (notify)="onSelectionChanged($event)"></app-tabel>
             <!-- De link tussen dit inzet component en de trein tabel component 
         moet nog gemaakt worden dmv van een service bestand. Evt icm het ophalen uit de database-->

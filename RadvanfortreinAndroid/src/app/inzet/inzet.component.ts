@@ -11,6 +11,7 @@ import { Speler } from '../domain/Speler/speler';
 import { Inzet } from '../domain/Inzet/inzet';
 import { Router } from '@angular/router';
 
+
 export interface Keuze {
   value: boolean;
   viewValue: string;
@@ -30,7 +31,7 @@ export class InzetComponent implements OnInit {
   aantalPunten = 0;
   selectedTrein: Trein;
   selectedTreinOrigin: string;
-  keuzeTeLaat: boolean;
+  keuzeTeLaat: boolean = false;
   treinen: string[];
   treinNaam: string;
   station: Station;
@@ -69,9 +70,13 @@ export class InzetComponent implements OnInit {
   }
 
   submit() {
+    if(this.selectedTrein == null){
+      console.log("Trein niet geselecteerd")
+      
+    }else{
     console.log(this.selectedTrein.naam, this.keuzeTeLaat, this.aantalPunten);
     this.treinen.push(this.selectedTrein.naam);
-    this.getSpeler(true);
+    this.getSpeler(true);}
   }
 
   getSpeler(inzet: boolean) {
