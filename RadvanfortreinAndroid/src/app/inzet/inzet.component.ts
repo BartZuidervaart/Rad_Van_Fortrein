@@ -29,7 +29,7 @@ export class InzetComponent implements OnInit {
   thirdFormGroup: FormGroup;
   aantalPunten = 0;
   selectedTrein: Trein;
-  selectedTreinOrigin: string;
+  selectedTreinDirection: string;
   keuzeTeLaat: boolean;
   treinen: string[];
   treinNaam: string;
@@ -202,7 +202,7 @@ export class InzetComponent implements OnInit {
 
   onSelectionChanged(trein: Trein): void {
     this.selectedTrein = trein;
-    this.selectedTreinOrigin = this.selectedTrein.origin;
+    this.selectedTreinDirection = this.selectedTrein.direction;
     console.log("Geselecteerde trein: " + this.selectedTrein.naam);
   }
 
