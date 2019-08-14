@@ -32,6 +32,8 @@ export class ResultaatElementTimerComponent implements OnInit {
   minutes: string;
   hours: string;
   time: string;
+  inzetGame: Inzet;
+  resultaat: number;
 
   constructor(
     private treinService : TreinService,
@@ -42,6 +44,7 @@ export class ResultaatElementTimerComponent implements OnInit {
 
   ngOnInit() {
     this.treinNaam = this.inzet.game.trein;
+    this.resultaat = this.inzet.game.resultaat;
     this.GetTrein();
     this.timer = setInterval(() => {
       this.timeBetweenDates(this.geplandeAankomstDate);
@@ -54,7 +57,8 @@ export class ResultaatElementTimerComponent implements OnInit {
   }
 
   resultaatToResultaat():void {
-    this.notifyResultaat.emit(this.inzet.game.resultaat);
+    this.resultaat = this.inzetGame.game.resultaat;
+    this.notifyResultaat.emit(this.inzetGame.game.resultaat);
   }
 
   GetTrein(){
@@ -82,7 +86,7 @@ export class ResultaatElementTimerComponent implements OnInit {
   getInzet(){
     this.inzetService.retrieveById(this.inzet.id).subscribe(
       (inzet : Inzet) => {
-        
+        this.inzetGame = inzet;
         console.log("GET inzet request is succesful  " + JSON.stringify(inzet));
       },
       (error = HttpErrorResponse) => {
@@ -90,7 +94,7 @@ export class ResultaatElementTimerComponent implements OnInit {
       },
       () => {
         this.resultaatToResultaat();
-        console.log("UPDATE resultaat games is succesful" + this.resultaatComponent.resultaat)
+        console.log("UPDATE resultaat games is succesful " + this.resultaatComponent.resultaat)
       }
     )
   }
@@ -123,7 +127,7 @@ export class ResultaatElementTimerComponent implements OnInit {
       this.minutes = minutes.toString();
       this.seconds = seconds.toString();
       this.time = this.hours.toString().concat(":" + this.minutes.toString() + ":" + this.seconds.toString());
-      if(hours == 0 && minutes == 0 && seconds == 0){
+      if(hours == 0 && minutes == 0 && seconds == 5){
         this.getInzet();
       }
     }

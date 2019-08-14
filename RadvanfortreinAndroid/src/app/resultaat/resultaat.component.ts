@@ -22,7 +22,7 @@ export class ResultaatComponent implements OnInit {
   inzettenArray: Inzet[];
   totaalPunten: number;
   spelerInzetten: Inzet[];
-  resultaat: number;
+  resultaat: number = 0;
   clicked: boolean[] = [false];
   trein: Trein;
   treinNaam: string;

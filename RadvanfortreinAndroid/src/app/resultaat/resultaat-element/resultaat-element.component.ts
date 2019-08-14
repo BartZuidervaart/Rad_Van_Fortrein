@@ -24,6 +24,7 @@ geplandeAankomstTijd: string;
 werkelijkeAankomstTijd: string;
 teLaat: boolean;
 resultaatTeLaat: boolean;
+resultaat: number;
  
 constructor(
   private treinService : TreinService,
@@ -35,11 +36,12 @@ constructor(
   ngOnInit(){
     this.treinNaam = this.inzet.game.trein;
     this.GetTrein();
-    if (this.inzet.game.resultaat == 1){
-      this.resultaatTeLaat = true;
-    } else{
-      this.resultaatTeLaat = false;
-    }
+    this.resultaat = this.resultaatComponent.resultaat;
+    // if (this.inzet.game.resultaat == 1){
+    //   this.resultaatTeLaat = true;
+    // } else{
+    //   this.resultaatTeLaat = false;
+    // }
   }
 
   treinToResultaat(): void{

@@ -1,4 +1,4 @@
-<div *ngIf="(inzet.game.resultaat == 1); then thenBlock1 else elseBlock1"></div>
+<div *ngIf="(resultaat == 1); then thenBlock1 else elseBlock1"></div>
 <ng-template #thenBlock1>
     De trein is aangekomen op: {{werkelijkeAankomstTijd}}. <br>
     De trein {{teLaat ? ' heeft vertraging op gelopen.' : ' is op tijd aangekomen.'}} <br>
@@ -9,7 +9,7 @@
     <a mat-raised-button (click)="DeleteInzet()">Delete</a>
 </ng-template>
 <ng-template #elseBlock1>
-    <div *ngIf="(inzet.game.resultaat == 2); then thenBlock2 else elseBlock2"></div>
+    <div *ngIf="(resultaat == 2); then thenBlock2 else elseBlock2"></div>
     <ng-template #thenBlock2>
         De trein is aangekomen op: {{werkelijkeAankomstTijd}}. <br>
         De trein {{teLaat ? ' heeft vertraging op gelopen.' : ' is op tijd aangekomen.'}} <br>
