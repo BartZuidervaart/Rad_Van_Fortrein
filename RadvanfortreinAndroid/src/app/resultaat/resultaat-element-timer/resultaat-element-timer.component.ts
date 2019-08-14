@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Inzet } from '../../domain/Inzet/inzet';
 import { Trein } from '../../domain/Trein/trein';
 import { TreinService } from '../../services/trein.service';
@@ -13,6 +13,7 @@ import { InzetService } from '../../services/inzet.service';
   styleUrls: ['./resultaat-element-timer.component.css']
 })
 export class ResultaatElementTimerComponent implements OnInit {
+  @Output() notify: EventEmitter<Trein> = new EventEmitter<Trein>();
   @Input("inzet") inzet: Inzet;
   @Input("trein") trein: Trein;
 
@@ -47,6 +48,11 @@ export class ResultaatElementTimerComponent implements OnInit {
     }, 1000);
   }
 
+  treinToResultaat(): void{
+    console.log("Trein in resultaat wordt verstuurd" + JSON.stringify(this.trein));
+    this.notify.emit(this.trein);
+  }
+
   GetTrein(){
     this.treinService.retrieveByNaam(this.treinNaam).subscribe(
       (trein : Trein) => {
@@ -64,6 +70,7 @@ export class ResultaatElementTimerComponent implements OnInit {
         console.log(error);
       },
       () => {
+        this.treinToResultaat();
       }
     )
   }
