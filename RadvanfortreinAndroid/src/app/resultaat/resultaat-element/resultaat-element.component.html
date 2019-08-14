@@ -1,7 +1,26 @@
-De trein is vertrokken op: {{werkelijkeAankomstTijd}}. <br>
-De trein {{teLaat ? ' heeft vertraging op gelopen.' : ' is op tijd vertrokken.'}} <br>
-Jij hebt {{inzet.inzetTeLaat == resultaatTeLaat ? 'goed' : 'fout'}} gegokt! <br>
-{{inzet.inzetTeLaat == resultaatTeLaat ? 'Je verdient hiermee ' : 'Je loopt hierdoor '}} {{inzet.inzetBedrag * 2}} 
-{{inzet.inzetTeLaat == resultaatTeLaat ? 'punten.' : 'punten mis.'}}
-<br>
-<a mat-raised-button (click)="DeleteInzet()">Delete</a><br>
+<div *ngIf="(resultaat == 1); then thenBlock1 else elseBlock1"></div>
+<ng-template #thenBlock1>
+    De trein is vertrokken op: {{werkelijkeAankomstTijd}}. <br>
+    De trein {{teLaat ? ' heeft vertraging op gelopen.' : ' is op tijd aangekomen.'}} <br>
+    Jij hebt {{inzet.inzetTeLaat ? 'goed' : 'fout'}} gegokt! <br>
+    {{inzet.inzetTeLaat ? 'Je verdient hiermee ' : 'Je loopt hierdoor '}} {{inzet.inzetBedrag * 2}}
+    {{inzet.inzetTeLaat ? 'punten.' : 'punten mis.'}}
+    <br>
+    <a mat-raised-button (click)="DeleteInzet()">Delete</a>
+</ng-template>
+<ng-template #elseBlock1>
+    <div *ngIf="(resultaat == 2); then thenBlock2 else elseBlock2"></div>
+    <ng-template #thenBlock2>
+        De trein is vertrokken op: {{werkelijkeAankomstTijd}}. <br>
+        De trein {{teLaat ? ' heeft vertraging op gelopen.' : ' is op tijd aangekomen.'}} <br>
+        Jij hebt {{!inzet.inzetTeLaat ? 'goed' : 'fout'}} gegokt! <br>
+        {{!inzet.inzetTeLaat ? 'Je verdient hiermee ' : 'Je loopt hierdoor '}} {{inzet.inzetBedrag * 2}}
+        {{!inzet.inzetTeLaat ? 'punten.' : 'punten mis.'}}
+        <br>
+        <a mat-raised-button (click)="DeleteInzet()">Delete</a>
+    </ng-template>
+    <ng-template #elseBlock2>
+        Resultaat is nog niet geupdate. <br>
+        <a mat-raised-button (click)="refreshResultaat()">Refresh</a>
+    </ng-template>
+</ng-template>

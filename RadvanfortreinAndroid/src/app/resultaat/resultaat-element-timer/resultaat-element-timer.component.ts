@@ -14,6 +14,7 @@ import { InzetService } from '../../services/inzet.service';
 })
 export class ResultaatElementTimerComponent implements OnInit {
   @Output() notify: EventEmitter<Trein> = new EventEmitter<Trein>();
+  @Output() notifyResultaat: EventEmitter<number> = new EventEmitter<number>();
   @Input("inzet") inzet: Inzet;
   @Input("trein") trein: Trein;
 
@@ -31,6 +32,8 @@ export class ResultaatElementTimerComponent implements OnInit {
   minutes: string;
   hours: string;
   time: string;
+  inzetGame: Inzet;
+  resultaat: number;
 
   constructor(
     private treinService : TreinService,
@@ -41,16 +44,21 @@ export class ResultaatElementTimerComponent implements OnInit {
 
   ngOnInit() {
     this.treinNaam = this.inzet.game.trein;
+    this.resultaat = this.inzet.game.resultaat;
     this.GetTrein();
     this.timer = setInterval(() => {
       this.timeBetweenDates(this.geplandeAankomstDate);
-      
     }, 1000);
   }
 
   treinToResultaat(): void{
     console.log("Trein in resultaat wordt verstuurd" + JSON.stringify(this.trein));
     this.notify.emit(this.trein);
+  }
+
+  resultaatToResultaat():void {
+    this.resultaat = this.inzetGame.game.resultaat;
+    this.notifyResultaat.emit(this.inzetGame.game.resultaat);
   }
 
   GetTrein(){
@@ -78,17 +86,23 @@ export class ResultaatElementTimerComponent implements OnInit {
   getInzet(){
     this.inzetService.retrieveById(this.inzet.id).subscribe(
       (inzet : Inzet) => {
-        
-        console.log("GET inzet request is succesful  " + inzet)
+        this.inzetGame = inzet;
+        console.log("GET inzet request is succesful  " + JSON.stringify(inzet));
       },
       (error = HttpErrorResponse) => {
         console.log(error);
       },
       () => {
-        this.resultaatComponent.resultaat = this.inzet.game.resultaat;
+        this.resultaatToResultaat();
+        console.log("UPDATE resultaat games is succesful " + this.resultaatComponent.resultaat)
       }
     )
   }
+
+  // GetSpeler(){
+  //   console.log("Speler wordt opgehaald " + JSON.stringify(this.resultaatComponent.speler));
+  //   this.resultaatComponent.GetSpeler();
+  // }
 
   timeBetweenDates(toDate) {
     var dateEntered = toDate;
@@ -113,9 +127,8 @@ export class ResultaatElementTimerComponent implements OnInit {
       this.minutes = minutes.toString();
       this.seconds = seconds.toString();
       this.time = this.hours.toString().concat(":" + this.minutes.toString() + ":" + this.seconds.toString());
-      if(hours == 0 && minutes == 0 && seconds == 0){
+      if(hours == 0 && minutes == 0 && seconds == 5){
         this.getInzet();
-        
       }
     }
 }

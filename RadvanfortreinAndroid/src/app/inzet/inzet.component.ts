@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 
+
 export interface Keuze {
   value: boolean;
   viewValue: string;
@@ -32,7 +33,7 @@ export class InzetComponent implements OnInit {
   aantalPunten = 0;
   selectedTrein: Trein;
   selectedTreinDirection: string;
-  keuzeTeLaat: boolean;
+  keuzeTeLaat: boolean = false;
   treinen: string[];
   treinNaam: string;
   station: Station;

@@ -1,4 +1,5 @@
-<div *ngIf="(([hours] == '0' && [minutes] == '0' && [seconds] == '0') || (inzet.game.resultaat == '1' || inzet.game.resultaat == '2')); then thenBlock else elseBlock"></div>
+<div >
+<div *ngIf="(([hours] == '0' && [minutes] == '0' && [seconds] == '0') || (resultaat == '1' || resultaat == '2')); then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
   <app-resultaat-element [inzet]='inzet'></app-resultaat-element>
 </ng-template>
@@ -9,4 +10,4 @@
         {{hours | tijd }} : {{minutes | tijd }} : {{seconds | tijd }}
     </div>
 </ng-template>
-
+</div>

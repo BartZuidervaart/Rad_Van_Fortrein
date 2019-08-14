@@ -1,16 +1,17 @@
-.mat-radio-button ~ .mat-radio-button {
+.mat-radio-button~.mat-radio-button {
   margin-left: 16px;
- margin-top: 16px;
+  margin-top: 16px;
 }
 
-
 mat-slider {
-    width: 70%;
-  }
+  width: 70%;
+}
 
-  mat-select mat-option {
-    height: unset;
-    white-space: normal;
-  }
-  
-  
+mat-select mat-option {
+  height: unset;
+  white-space: normal;
+}
+
+p{
+  margin-top: 4px;
+}
