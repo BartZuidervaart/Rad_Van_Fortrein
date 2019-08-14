@@ -1,0 +1,11 @@
+.errorDialogBody {
+    color: black;
+}
+
+.errorDialogButton {
+    color: black;
+}
+
+.mat-dialog-actions {
+    justify-content: center;
+}
