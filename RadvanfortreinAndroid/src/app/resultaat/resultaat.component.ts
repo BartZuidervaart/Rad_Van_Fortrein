@@ -26,8 +26,8 @@ export class ResultaatComponent implements OnInit {
   clicked: boolean[] = [false];
   trein: Trein;
   treinNaam: string;
-  treinOrigin: string;
-  treinOrigins: Array<string> = [];
+  treinDirection: string;
+  treinDirections: Array<string> = [];
   geplandeAankomstTijd: string;
   geplandeAankomsten: string[] =[];
   werkelijkeAankomstTijd: string;
@@ -66,14 +66,14 @@ export class ResultaatComponent implements OnInit {
     this.treinService.retrieveByNaam(naam).subscribe(
       (trein: Trein) => {
         this.trein = trein;
-        this.treinOrigin = trein.origin;
+        this.treinDirection = trein.direction;
         this.geplandeAankomstTijd = trein.geplandeAankomsten[0].substring(11, 16);
       },
       (error = HttpErrorResponse) => {
         console.log(error);
       },
       () => {
-        this.treinOrigins.push(this.treinOrigin);
+        this.treinDirections.push(this.treinDirection);
         this.geplandeAankomsten.push
       }
     )
@@ -125,7 +125,7 @@ export class ResultaatComponent implements OnInit {
 
   onNotifyEvent(trein: Trein) {
       this.trein = trein;
-      this.treinOrigins.push(trein.origin);
+      this.treinDirections.push(trein.direction);
       this.geplandeAankomsten.push(trein.geplandeAankomsten[0].substring(11,16));
       console.log("Trein in resultaat is ontvangen");
   }

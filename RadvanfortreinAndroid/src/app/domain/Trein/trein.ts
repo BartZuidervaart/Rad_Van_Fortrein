@@ -2,7 +2,7 @@ export class Trein {
 
     constructor(
         public naam: string,
-        public origin: string,
+        public direction: string,
         public geplandeAankomsten: string[],
         public werkelijkeAankomsten: string[],
         public teLaat: boolean,
@@ -12,8 +12,8 @@ export class Trein {
         return this.naam;
     }
 
-    get getOrigin() : string {
-        return this.origin;
+    get getDirection() : string {
+        return this.direction;
     }
 
     get getGeplandeAankomsten() {
