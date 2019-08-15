@@ -43,6 +43,9 @@ export class InzetComponent implements OnInit {
   teWinnenPunten: number = 0;
   spelerId: number = 998;
   totaalPunten: number;
+  treinInfo: string = "Selecteer de trein waar je op wilt gokken.";
+  keuzeInfo: string = "Kies of je denkt dat de geselecteerde trein op tijd komt of niet.";
+  puntenInfo: string = "Er moet minstens 1 punten worden ingezet. Je kan niet meer inzetten dan je totaal aantal punten. Als je goed gokt verdubbel je je inzet. Als je fout gokt verlies je je inzet. ";
 
   keuzes: Keuze[] = [
     { value: false, viewValue: 'Op tijd' },

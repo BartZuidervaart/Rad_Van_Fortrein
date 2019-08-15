@@ -15,3 +15,7 @@ mat-select mat-option {
 p{
   margin-top: 4px;
 }
+
+mat-icon {
+  font-size: 100%
+}
