@@ -23,7 +23,6 @@ treinDirection: string;
 geplandeAankomstTijd: string;
 werkelijkeAankomstTijd: string;
 teLaat: boolean;
-resultaatTeLaat: boolean;
 resultaat: number;
  
 constructor(
@@ -37,11 +36,6 @@ constructor(
     this.treinNaam = this.inzet.game.trein;
     this.GetTrein();
     this.resultaat = this.resultaatComponent.resultaat;
-    // if (this.inzet.game.resultaat == 1){
-    //   this.resultaatTeLaat = true;
-    // } else{
-    //   this.resultaatTeLaat = false;
-    // }
   }
 
   treinToResultaat(): void{

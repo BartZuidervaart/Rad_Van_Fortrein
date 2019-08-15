@@ -77,11 +77,8 @@ export class ResultaatComponent implements OnInit {
   resultaatChange(resultaat: number) {
     this.resultaat = resultaat;
     console.log("Resultaat: " + JSON.stringify(this.resultaat));
+    this.GetSpeler();
   } 
-
-  getInzetten() {
-    return this.inzetten;
-  }
 
   onNotifyEvent(trein: Trein) {
       this.trein = trein;
