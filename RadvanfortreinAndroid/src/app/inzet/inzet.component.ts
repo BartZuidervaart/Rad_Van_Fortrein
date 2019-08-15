@@ -43,6 +43,7 @@ export class InzetComponent implements OnInit {
   teWinnenPunten: number = 0;
   spelerId: number = 998;
   totaalPunten: number;
+  treinDate : Date;
 
   keuzes: Keuze[] = [
     { value: false, viewValue: 'Op tijd' },
@@ -76,9 +77,16 @@ export class InzetComponent implements OnInit {
     if (this.selectedTrein == null) {
       this.openDialog("Er is geen trein geselecteerd. Selecteer een trein en probeer het nog eens.");
     } else {
-      console.log(this.selectedTrein.naam, this.keuzeTeLaat, this.aantalPunten);
-      this.treinen.push(this.selectedTrein.naam);
-      this.getSpeler(true);
+      this.treinDate = new Date(this.selectedTrein.geplandeAankomsten[0]);
+      var now = new Date();
+      var difference = this.treinDate.getTime() - now.getTime();
+      if (difference <= 0 ) {
+        this.openDialog("De geplande vertrektijd van de trein is al verstreken, kies een andere trein.", true);
+      } else {
+        console.log(this.selectedTrein.naam, this.keuzeTeLaat, this.aantalPunten);
+        this.treinen.push(this.selectedTrein.naam);
+        this.getSpeler(true);
+      }
     }
   }
 
@@ -218,7 +226,7 @@ export class InzetComponent implements OnInit {
     this.router.navigate(['resultaat']);
   }
 
-  openDialog(errorMessage : string) : void {
+  openDialog(errorMessage : string, refresh? : boolean) : void {
     const dialogRef = this.dialog.open(ErrorDialogComponent, {
       width: '250px',
       data: {message : errorMessage}
@@ -226,6 +234,9 @@ export class InzetComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
      console.log("De error dialog is gesloten");
+     if (refresh) {
+      this.router.navigate(['redirect', 'inzet']);
+     }
     })
   }
 
