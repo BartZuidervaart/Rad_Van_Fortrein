@@ -172,7 +172,7 @@ export class InzetComponent implements OnInit {
         }
       },
       () => {
-        this.gaNaarHome();
+        this.gaNaarResultaat();
       }
     )
   }
@@ -214,8 +214,8 @@ export class InzetComponent implements OnInit {
     console.log("Geselecteerde trein: " + this.selectedTrein.naam);
   }
 
-  gaNaarHome(): void {
-    this.router.navigate(['home']);
+  gaNaarResultaat(): void {
+    this.router.navigate(['resultaat']);
   }
 
   openDialog(errorMessage : string) : void {
