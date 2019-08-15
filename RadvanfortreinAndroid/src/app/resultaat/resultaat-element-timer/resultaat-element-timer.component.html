@@ -1,4 +1,9 @@
-<div >
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+          <mat-panel-title>
+                  van Amsterdam naar {{treinDirection}} van {{geplandeAankomstTijd}}
+          </mat-panel-title>
+  </mat-expansion-panel-header>
 <div *ngIf="(([hours] == '0' && [minutes] == '0' && [seconds] == '0') || (resultaat == '1' || resultaat == '2')); then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
   <app-resultaat-element [inzet]='inzet'></app-resultaat-element>
@@ -10,4 +15,4 @@
         {{hours | tijd }} : {{minutes | tijd }} : {{seconds | tijd }}
     </div>
 </ng-template>
-</div>
+</mat-expansion-panel>
