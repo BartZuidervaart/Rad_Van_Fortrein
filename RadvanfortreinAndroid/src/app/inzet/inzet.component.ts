@@ -43,6 +43,7 @@ export class InzetComponent implements OnInit {
   teWinnenPunten: number = 0;
   spelerId: number = 998;
   totaalPunten: number;
+  treinDate : Date;
   treinInfo: string = "Selecteer de trein waar je op wilt gokken.";
   keuzeInfo: string = "Kies of je denkt dat de geselecteerde trein op tijd komt of niet.";
   puntenInfo: string = "Er moet minstens 1 punten worden ingezet. Je kan niet meer inzetten dan je totaal aantal punten. Als je goed gokt verdubbel je je inzet. Als je fout gokt verlies je je inzet. ";
@@ -79,9 +80,16 @@ export class InzetComponent implements OnInit {
     if (this.selectedTrein == null) {
       this.openDialog("Er is geen trein geselecteerd. Selecteer een trein en probeer het nog eens.");
     } else {
-      console.log(this.selectedTrein.naam, this.keuzeTeLaat, this.aantalPunten);
-      this.treinen.push(this.selectedTrein.naam);
-      this.getSpeler(true);
+      this.treinDate = new Date(this.selectedTrein.geplandeAankomsten[0]);
+      var now = new Date();
+      var difference = this.treinDate.getTime() - now.getTime();
+      if (difference <= 0 ) {
+        this.openDialog("De geplande vertrektijd van de trein is al verstreken, kies een andere trein.", true);
+      } else {
+        console.log(this.selectedTrein.naam, this.keuzeTeLaat, this.aantalPunten);
+        this.treinen.push(this.selectedTrein.naam);
+        this.getSpeler(true);
+      }
     }
   }
 
@@ -221,7 +229,7 @@ export class InzetComponent implements OnInit {
     this.router.navigate(['resultaat']);
   }
 
-  openDialog(errorMessage : string) : void {
+  openDialog(errorMessage : string, refresh? : boolean) : void {
     const dialogRef = this.dialog.open(ErrorDialogComponent, {
       width: '250px',
       data: {message : errorMessage}
@@ -229,6 +237,9 @@ export class InzetComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
      console.log("De error dialog is gesloten");
+     if (refresh) {
+      this.router.navigate(['redirect', 'inzet']);
+     }
     })
   }
 
