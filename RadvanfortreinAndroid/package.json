@@ -29,7 +29,7 @@
     "@ionic-native/speech-recognition": "^4.12.2",
     "@types/matter-js": "^0.10.1",
     "cordova-android": "^7.1.4",
-    "cordova-browser": "^5.0.4",
+    "cordova-browser": "^6.0.0",
     "cordova-ios": "^5.0.1",
     "cordova-plugin-dbmeter": "^2.1.0",
     "cordova-plugin-device": "~2.0.2",
